@@ -2,7 +2,7 @@
 % Please edit documentation in R/make_case_score.R
 \name{make_case_score}
 \alias{make_case_score}
-\title{Title}
+\title{Make case score out of de-identified data}
 \usage{
 make_case_score(data, columns, quiet = FALSE)
 }
@@ -19,7 +19,8 @@ that it is NOT quiet, and thus will give the message).}
 A data.frame
 }
 \description{
-Title
+This gives you a data.frame with rows grouped based on the columns
+parameter and tell you how many unique valuesare in each group.
 }
 \examples{
 make_case_score(mtcars, columns = c("cyl", "vs", "am", "gear"))

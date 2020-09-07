@@ -2,7 +2,10 @@
 # columns <- c("cyl", "vs", "am", "gear")
 #
 # make_case_score(data, c("cyl", "vs", "am", "gear"))
-#' Title
+#' Make case score out of de-identified data
+#'
+#' This gives you a data.frame with rows grouped based on the columns
+#' parameter and tell you how many unique valuesare in each group.
 #'
 #' @param data
 #' The data.frame with the data you want to make the case score from.
@@ -23,8 +26,8 @@ make_case_score <- function(data, columns, quiet = FALSE) {
   data <-
     data %>%
     dplyr::group_by_at(dplyr::vars(dplyr::one_of(columns))) %>%
-    dplyr::summarize(number_of_observations = dplyr::n(), .groups = "keep") %>%
-    dplyr::arrange(number_of_observations)
+    dplyr::summarize(number_of_observations = dplyr::n(), .groups = "keep")
+  data <- dplyr::arrange(data, data$number_of_observations)
 
   if (!quiet) {
     if (any(data$number_of_observations  < 3)) {

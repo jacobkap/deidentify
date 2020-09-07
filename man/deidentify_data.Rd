@@ -17,6 +17,15 @@ deidentify_data(
 )
 }
 \arguments{
+\item{data}{A data.frame with the data you want to deidentify.}
+
+\item{cols_to_encrpyt}{A string or vector of strings with the columns that you want to encrypt
+using the \code{seed_cipher()} function from the \code{caesar} package.}
+
+\item{seeds_for_encryption}{A string or vector of strings with the columns that you want to use for
+each column in the cols_to_encrpyt parameter. If NULL, will use random seeds
+andwill print those seeds if the paramter quiet is set to TRUE.}
+
 \item{group_rare_values_cols}{A string or vector of strings with the columns that you want to convert
 rare values (below a certain percent of all values as set in
 \code{group_rare_values_limit}) into NA or a particular string (or NA) set in
@@ -31,13 +40,17 @@ for what to rename the values that are determined to be rare enough (based on
 threshold set in \code{group_rare_values_limit} to rename (default is just
 calling them NA).}
 
+\item{time_aggregation}{A string with the time unit to aggregate all Date variables to.
+Can take one of the following: 'week', 'month', 'bimonth', 'quarter',
+'halfyear', 'year'.}
+
 \item{quiet}{A Boolean for whether you want to output a message that tells you which
 columns that you are encrypting and the seed set for each column to
 do the encryption. If you don't set the seed yourself, you need these
 seeds to decrypt.}
 }
 \value{
-
+A data.frame with the selected columns de-identify based on user parameters.
 }
 \description{
 De-identify data through encrypting text columns, grouping rare values, and,

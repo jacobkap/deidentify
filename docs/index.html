@@ -59,16 +59,36 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-What the package does (one paragraph).
+<div id="de-identify-private-data" class="section level1">
+<div class="page-header"><h1 class="hasAnchor">
+<a href="#de-identify-private-data" class="anchor"></a>De-identify private data</h1></div>
+<!-- badges: start -->
+
+<p>The goal of <code>deidentify</code> is to automate some of the work of de-identifying private data for releasing that data to the public. This involves determining how many people are in each unique group (the “case score”) which determines how easy it is to figure out who someone is. Basically, if someone meets a criteria that is rare in your data (e.g. combination of some columns such as a White female, who lives in X city, and is aged 16) then it could be easier to figure out who it is. The <code><a href="reference/deidentify_data.html">deidentify_data()</a></code> function helps to de-identify data by aggregating values that are rare, encrypting strings (though the <code>seed_cipher()</code> function in the <code>caesar</code> package), and aggregating dates in larger groupings (e.g. months, years)</p>
+<div id="installation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h2>
+<p>You can install the released version of <code>deidentify</code> from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
+<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"deidentify"</span>)</pre></div>
+<p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
+<div class="sourceCode" id="cb2"><pre class="r"><span class="co"># install.packages("devtools")</span>
+<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"jacobkap/deidentify"</span>)</pre></div>
+</div>
+<div id="example" class="section level2">
+<h2 class="hasAnchor">
+<a href="#example" class="anchor"></a>Example</h2>
+<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">deidentify</span>)
+<span class="co">## basic example code</span></pre></div>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="license">
 <h2>License</h2>
 <ul class="list-unstyled">
-<li>
-<a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
-</li>
+<li><a href="LICENSE.html">Full license</a></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
 <div class="developers">
@@ -78,7 +98,18 @@ What the package does (one paragraph).
 </ul>
 </div>
 
-  </div>
+  <div class="dev-status">
+<h2>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://travis-ci.com/jacobkap/deidentify"><img src="https://travis-ci.com/jacobkap/deidentify.svg?branch=master" alt="Travis build status"></a></li>
+<li><a href="https://ci.appveyor.com/project/jacobkap/deidentify"><img src="https://ci.appveyor.com/api/projects/status/github/jacobkap/deidentify?branch=master&amp;svg=true" alt="AppVeyor build status"></a></li>
+<li><a href="https://CRAN.R-project.org/package=deidentify"><img src="https://www.r-pkg.org/badges/version/deidentify" alt="CRAN status"></a></li>
+<li><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+<li><a href="https://codecov.io/gh/jacobkap/deidentify?branch=master"><img src="https://codecov.io/gh/jacobkap/deidentify/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://cran.r-project.org/package=deidentify"><img src="http://cranlogs.r-pkg.org/badges/grand-total/deidentify?color=blue"></a></li>
+</ul>
+</div>
+</div>
 </div>
 
 
