@@ -16,13 +16,13 @@
 #' A Boolean for whether you want to output a message that tells you if
 #' there are groups with 3 or fewer observations (default is FALSE meaning
 #' that it is NOT quiet, and thus will give the message).
-#'
 #' @return
 #' A data.frame
-#' @export
-#'
 #' @examples
+#' \dontrun{
 #' make_case_score(mtcars, columns = c("cyl", "vs", "am", "gear"))
+#' }
+#' @export
 make_case_score <- function(data, columns, quiet = FALSE) {
   data <-
     data %>%

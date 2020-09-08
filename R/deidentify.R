@@ -39,9 +39,8 @@
 #'
 #' @return
 #' A data.frame with the selected columns de-identify based on user parameters.
-#' @export
-#'
 #' @examples
+#' @export
 deidentify_data <- function(data,
                             cols_to_encrpyt = NULL,
                             seeds_for_encryption = NULL,
@@ -57,7 +56,7 @@ deidentify_data <- function(data,
                             quiet = FALSE) {
 
   if (!is.null(cols_to_encrpyt) & is.null(seeds_for_encryption)) {
-    seeds_for_encryption <- sample(1000:10000000, length(cols_to_encrpyt))
+    seeds_for_encryption <- sample(1e3:1e7, length(cols_to_encrpyt))
   }
   column_types <- apply(data, 2, typeof)
 
@@ -85,7 +84,7 @@ deidentify_data <- function(data,
     # Encrypts all of the columns that should be encrypted.
     for (i in 1:length(cols_to_encrpyt)) {
       col <- cols_to_encrpyt[i]
-      data[, col] <- caesar::seed_cipher(data[, col], seed = seeds_for_encryption[i])
+      data[, col] <- caesar::seed_cipher(data[, col,drop = T], seed = seeds_for_encryption[i])
     }
 
     cols_and_seeds        <- cols_to_encrpyt
@@ -114,9 +113,5 @@ get_values_rarer_than_k_percent <- function(data,
   if (length(values_under_k_percent) == 0) {
     values_under_k_percent <- NULL
   }
-
   return(values_under_k_percent)
 }
-
-
-

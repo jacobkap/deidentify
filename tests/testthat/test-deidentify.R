@@ -1,5 +1,4 @@
 
-
 test_that("Identify rare values (less thank k% of the non-NA data) works", {
   expect_equal(get_values_rarer_than_k_percent(mtcars$am), NULL)
 
@@ -28,4 +27,38 @@ test_that("date aggregate works", {
                as.Date(c("1996-01-01", "2012-01-01", "2020-01-01", "2020-01-01")))
 
 
+})
+
+test_that("tibbles and data.tables encrypt characters in the same way as data.frames",{
+  expect_equivalent(
+    deidentify_data(
+      tib_example,
+      cols_to_encrpyt = "groups",
+      seeds_for_encryption = 1e4,
+      quiet = T,
+      time_aggregation = "month"
+    ),
+    deidentify_data(
+      example,
+      cols_to_encrpyt = "groups",
+      seeds_for_encryption = 1e4,
+      quiet = T,
+      time_aggregation = "month"
+    ))
+    expect_equivalent(
+      deidentify_data(
+        dt_example,
+        cols_to_encrpyt = "groups",
+        seeds_for_encryption = 1e4,
+        quiet = T,
+        time_aggregation = "month"
+      ),
+      deidentify_data(
+        example,
+        cols_to_encrpyt = "groups",
+        seeds_for_encryption = 1e4,
+        quiet = T,
+        time_aggregation = "month"
+      )
+  )
 })
