@@ -1,12 +1,16 @@
 Package: deidentify
-Title: Encrypts and Aggregates Data for Public Release
+Title: De-identifies Data for Public Release
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "Jacob",
+    c(person(given = "Jacob",
            family = "Kaplan",
            role = c("aut", "cre"),
            email = "jkkaplan6@gmail.com",
-           comment = c(ORCID = "0000-0002-0601-0387"))
+           comment = c(ORCID = "0000-0002-0601-0387")),
+    person(given = "Sebastian", 
+    family = "Hoyos-Torres",
+    role = c("aut"), 
+    email = "sebtorres7021@gmail.com"))
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -18,7 +22,7 @@ Depends:
 Imports:
     lubridate,
     dplyr,
-    caesar,
+    caesar (>= 1.1.0),
     magrittr
 Suggests: 
     covr,
