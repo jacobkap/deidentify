@@ -12,7 +12,7 @@
 #' @param seeds_for_encryption
 #' A string or vector of strings with the columns that you want to use for
 #' each column in the cols_to_encrpyt parameter. If NULL, will use random seeds
-#' andwill print those seeds if the paramter quiet is set to TRUE.
+#' and will print those seeds if the parameter quiet is set to TRUE.
 #' @param group_rare_values_cols
 #' A string or vector of strings with the columns that you want to convert
 #' rare values (below a certain percent of all values as set in

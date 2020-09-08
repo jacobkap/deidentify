@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![Travis build
-status](https://travis-ci.com/jacobkap/deidentify.svg?branch=master)](https://travis-ci.com/jacobkap/deidentify)
+status](https://travis-ci.org/jacobkap/deidentify.svg?branch=master)](https://travis-ci.org/jacobkap/deidentify)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/jacobkap/deidentify?branch=master&svg=true)](https://ci.appveyor.com/project/jacobkap/deidentify)
 [![CRAN

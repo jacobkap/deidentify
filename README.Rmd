@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 # De-identify private data
 
 <!-- badges: start -->
-[![Travis build status](https://travis-ci.com/jacobkap/deidentify.svg?branch=master)](https://travis-ci.com/jacobkap/deidentify)
+[![Travis build status](https://travis-ci.org/jacobkap/deidentify.svg?branch=master)](https://travis-ci.org/jacobkap/deidentify)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/jacobkap/deidentify?branch=master&svg=true)](https://ci.appveyor.com/project/jacobkap/deidentify)
 [![CRAN status](https://www.r-pkg.org/badges/version/deidentify)](https://CRAN.R-project.org/package=deidentify)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
