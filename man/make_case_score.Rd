@@ -4,16 +4,20 @@
 \alias{make_case_score}
 \title{Make case score out of de-identified data}
 \usage{
-make_case_score(data, columns, quiet = FALSE)
+make_case_score(data, columns, quiet = FALSE, minimum_case_score = 3)
 }
 \arguments{
 \item{data}{The data.frame with the data you want to make the case score from.}
 
 \item{columns}{A string or vector of strings for the names of columns to group the data by.}
 
-\item{quiet}{A Boolean for whether you want to output a message that tells you if
-there are groups with 3 or fewer observations (default is FALSE meaning
-that it is NOT quiet, and thus will give the message).}
+\item{quiet}{A Boolean (default FALSE) for whether you want to output a message that tells you if
+there are groups with too few observations - you can set how many is 'too few'
+in the paramter \code{minimum_case_score}, default is 3.}
+
+\item{minimum_case_score}{A single integer which sets the number of observations in each group that will
+message (if \code{quiet} is FALSE) saying how many groups have fewer observations below
+that group.}
 }
 \value{
 A data.frame
