@@ -26,6 +26,20 @@ test_that("date aggregate works", {
   expect_equal(deidentify_data(example, time_aggregation = "year", quiet = TRUE)$dates,
                as.Date(c("1996-01-01", "2012-01-01", "2020-01-01", "2020-01-01")))
 
+  expect_equal(deidentify_data(tib_example, time_aggregation = "month", quiet = TRUE)$dates, as.Date(c("1996-04-01", "2012-08-01", "2020-01-01", "2020-04-01")))
+  expect_equal(deidentify_data(tib_example, time_aggregation = "bimonth", quiet = TRUE)$dates, as.Date(c("1996-3-01", "2012-07-01", "2020-01-01", "2020-03-01")))
+  expect_equal(deidentify_data(tib_example, time_aggregation = "quarter", quiet = TRUE)$dates, as.Date(c("1996-04-01", "2012-07-01", "2020-01-01", "2020-04-01")))
+  expect_equal(deidentify_data(tib_example, time_aggregation = "halfyear", quiet = TRUE)$dates, as.Date(c("1996-01-01", "2012-07-01", "2020-01-01", "2020-01-01")))
+  expect_equal(deidentify_data(tib_example, time_aggregation = "year", quiet = TRUE)$dates,
+               as.Date(c("1996-01-01", "2012-01-01", "2020-01-01", "2020-01-01")))
+
+  expect_equal(deidentify_data(dt_example, time_aggregation = "month", quiet = TRUE)$dates, as.Date(c("1996-04-01", "2012-08-01", "2020-01-01", "2020-04-01")))
+  expect_equal(deidentify_data(dt_example, time_aggregation = "bimonth", quiet = TRUE)$dates, as.Date(c("1996-3-01", "2012-07-01", "2020-01-01", "2020-03-01")))
+  expect_equal(deidentify_data(dt_example, time_aggregation = "quarter", quiet = TRUE)$dates, as.Date(c("1996-04-01", "2012-07-01", "2020-01-01", "2020-04-01")))
+  expect_equal(deidentify_data(dt_example, time_aggregation = "halfyear", quiet = TRUE)$dates, as.Date(c("1996-01-01", "2012-07-01", "2020-01-01", "2020-01-01")))
+  expect_equal(deidentify_data(dt_example, time_aggregation = "year", quiet = TRUE)$dates,
+               as.Date(c("1996-01-01", "2012-01-01", "2020-01-01", "2020-01-01")))
+
 
 })
 
