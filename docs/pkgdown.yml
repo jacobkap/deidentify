@@ -1,6 +1,8 @@
 pandoc: 2.9.1
 pkgdown: 1.5.1
 pkgdown_sha: ~
-articles: []
-last_built: 2020-09-08T13:29Z
+articles:
+  case_score: case_score.html
+  deidentify_data: deidentify_data.html
+last_built: 2020-09-08T13:48Z
 

@@ -23,5 +23,8 @@ Imports:
 Suggests: 
     covr,
     spelling,
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
 Language: en-US
+VignetteBuilder: knitr

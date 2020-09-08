@@ -1,0 +1,19 @@
+---
+title: "Determining a case score for a dataset"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{case_score}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(deidentify)
+```

@@ -1,0 +1,19 @@
+---
+title: "How to de-identify data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{deidentify_data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(deidentify)
+```
