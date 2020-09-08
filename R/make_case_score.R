@@ -36,5 +36,6 @@ make_case_score <- function(data, columns, quiet = FALSE) {
                      " groups with three or fewer observations."))
     }
   }
+  data <- data.frame(data)
   return(data)
 }

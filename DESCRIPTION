@@ -22,5 +22,6 @@ Imports:
     magrittr
 Suggests: 
     covr,
-    spelling
+    spelling,
+    testthat
 Language: en-US

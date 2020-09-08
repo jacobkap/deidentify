@@ -73,10 +73,10 @@ deidentify_data <- function(data,
   if (!is.null(group_rare_values_cols)) {
     for (i in 1:length(group_rare_values_cols)) {
       col <- group_rare_values_cols[i]
-      data[, col] <- get_values_less_than_k_percent(data,
-                                                    col,
-                                                    group_rare_values_limit[i],
-                                                    group_rare_values_text[i])
+      values_under_k_percent <-
+        get_values_rarer_than_k_percent(data[, col],
+                                        group_rare_values_limit[i])
+      data[, col][data[, col] %in% values_under_k_percent] <- group_rare_values_text[i]
     }
   }
 
@@ -88,7 +88,7 @@ deidentify_data <- function(data,
       data[, col] <- caesar::seed_cipher(data[, col], seed = seeds_for_encryption[i])
     }
 
-    cols_and_seeds <- cols_to_encrpyt
+    cols_and_seeds        <- cols_to_encrpyt
     names(cols_and_seeds) <- seeds_for_encryption
     print(paste0("Below are the columns that you encrypted and the seed set for each column. Please keep a record of this so you can decrypt later."))
     print(cols_and_seeds)
@@ -97,19 +97,25 @@ deidentify_data <- function(data,
   return(data)
 }
 
-get_values_less_than_k_percent <- function(data,
-                                           column,
-                                           k_percent,
-                                           replacement_text = NA) {
-  unique_values <- unique(data[, col])
-  unique_values <- unique_values[!is.na(unique_values)]
+get_values_rarer_than_k_percent <- function(data,
+                                            k_percent = 5) {
 
-  values_by_percent <- table(data[, col]) / nrow(data[!is.na(data[, col]), ]) * 100
-  values_under_k_percent <- names(values_by_percent[values_by_percent < 5])
+  numeric_data <- is.numeric(data)
+  values_by_percent <- table(data) / length(data[!is.na(data)]) * 100
+  values_under_k_percent <- names(values_by_percent[values_by_percent < k_percent])
 
-  data[, col][data[, col] %in% values_under_k_percent] <- replacement_text
+  if(numeric_data) {
+    values_under_k_percent <- as.numeric(values_under_k_percent)
+    }
 
-  return(data)
+  # Sorts alphabetically (or smallest to largest if numeric) for easier testing.
+  values_under_k_percent <- sort(values_under_k_percent)
+  # Returns NULL if no responses
+  if (length(values_under_k_percent) == 0) {
+    values_under_k_percent <- NULL
+  }
+
+  return(values_under_k_percent)
 }
 
 
