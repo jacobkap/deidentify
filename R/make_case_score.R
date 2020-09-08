@@ -23,10 +23,11 @@
 #'
 #' @return
 #' A data.frame
-#' @export
-#'
 #' @examples
+#' \dontrun{
 #' make_case_score(mtcars, columns = c("cyl", "vs", "am", "gear"))
+#' }
+#' @export
 make_case_score <- function(data,
                             columns,
                             quiet = FALSE,

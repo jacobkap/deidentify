@@ -27,5 +27,7 @@ This gives you a data.frame with rows grouped based on the columns
 parameter and tell you how many unique values are in each group.
 }
 \examples{
+\dontrun{
 make_case_score(mtcars, columns = c("cyl", "vs", "am", "gear"))
+}
 }
