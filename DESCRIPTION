@@ -29,6 +29,7 @@ Suggests:
     spelling,
     testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    data.table
 Language: en-US
 VignetteBuilder: knitr
