@@ -2,7 +2,7 @@
 title: "Determining a case score for a dataset"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{case_score}
+  %\VignetteIndexEntry{Determining a case score for a dataset}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

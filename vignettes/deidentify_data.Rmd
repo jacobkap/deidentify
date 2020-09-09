@@ -2,7 +2,7 @@
 title: "How to de-identify data"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{deidentify_data}
+  %\VignetteIndexEntry{How to de-identify data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

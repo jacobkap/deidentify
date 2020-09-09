@@ -1,17 +1,16 @@
-
 #' De-identify data through encrypting text columns, grouping rare values, and,
 #' aggregating numeric or date columns.
 #'
 #'
 #'
 #' @param data
-#' A data.frame with the data you want to deidentify.
+#' A data.frame with the data you want to de-identify.
 #' @param cols_to_encrpyt
 #' A string or vector of strings with the columns that you want to encrypt
 #' using the `seed_cipher()` function from the `caesar` package.
 #' @param seeds_for_encryption
 #' A string or vector of strings with the columns that you want to use for
-#' each column in the cols_to_encrpyt parameter. If NULL, will use random seeds
+#' each column in the cols_to_encrypt parameter. If NULL, will use random seeds
 #' and will print those seeds if the parameter quiet is set to TRUE.
 #' @param group_rare_values_cols
 #' A string or vector of strings with the columns that you want to convert

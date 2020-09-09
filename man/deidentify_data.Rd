@@ -17,13 +17,13 @@ deidentify_data(
 )
 }
 \arguments{
-\item{data}{A data.frame with the data you want to deidentify.}
+\item{data}{A data.frame with the data you want to de-identify.}
 
 \item{cols_to_encrpyt}{A string or vector of strings with the columns that you want to encrypt
 using the \code{seed_cipher()} function from the \code{caesar} package.}
 
 \item{seeds_for_encryption}{A string or vector of strings with the columns that you want to use for
-each column in the cols_to_encrpyt parameter. If NULL, will use random seeds
+each column in the cols_to_encrypt parameter. If NULL, will use random seeds
 and will print those seeds if the parameter quiet is set to TRUE.}
 
 \item{group_rare_values_cols}{A string or vector of strings with the columns that you want to convert
