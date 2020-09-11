@@ -2,5 +2,6 @@
 
 export("%>%")
 export(deidentify_data)
-export(make_case_score)
+export(graph_group_rare_values)
+export(make_k_score)
 importFrom(magrittr,"%>%")

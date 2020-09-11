@@ -1,8 +1,8 @@
 ---
-title: "Determining a case score for a dataset"
+title: "Determining a K score for a dataset"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Determining a case score for a dataset}
+  %\VignetteIndexEntry{Determining a K score for a dataset}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

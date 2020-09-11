@@ -1,43 +1,41 @@
 # data <- mtcars
 # columns <- c("cyl", "vs", "am", "gear")
 #
-# make_case_score(data, c("cyl", "vs", "am", "gear"))
+# make_k_score(data, c("cyl", "vs", "am", "gear"))
 
-#' Make case score out of de-identified data
+#' Make k score out of de-identified data
 #'
 #' This gives you a data.frame with rows grouped based on the columns
 #' parameter and tell you how many unique values are in each group.
 #'
 #' @param data
-#' The data.frame with the data you want to make the case score from.
+#' The data.frame with the data you want to make the k score from.
 #' @param columns
 #' A string or vector of strings for the names of columns to group the data by.
 #' @param quiet
 #' A Boolean (default FALSE) for whether you want to output a message that tells you if
 #' there are groups with too few observations - you can set how many is 'too few'
-#' in the paramter `minimum_case_score`, default is 3.
-#' @param minimum_case_score
+#' in the paramter `minimum_k_score`, default is 3.
+#' @param minimum_k_score
 #' A single integer which sets the number of observations in each group that will
 #' message (if `quiet` is FALSE) saying how many groups have fewer observations below
 #' that group.
 #'
+#' @export
 #' @return
 #' A data.frame
 #' @examples
-#' \dontrun{
-#' make_case_score(mtcars, columns = c("cyl", "vs", "am", "gear"))
-#' }
-#' @export
-make_case_score <- function(data,
+#' make_k_score(mtcars, columns = c("cyl", "vs", "am", "gear"))
+make_k_score <- function(data,
                             columns,
                             quiet = FALSE,
-                            minimum_case_score = 3) {
+                            minimum_k_score = 3) {
 
-  if (!is.numeric(minimum_case_score) | length(minimum_case_score) != 1) {
-    stop("minimum_case_score must be a single positive integer.")
+  if (!is.numeric(minimum_k_score) | length(minimum_k_score) != 1) {
+    stop("minimum_k_score must be a single positive integer.")
   }
-  if (minimum_case_score <= 0) {
-    stop("minimum_case_score must be a single positive integer.")
+  if (minimum_k_score <= 0) {
+    stop("minimum_k_score must be a single positive integer.")
   }
   if (!is.vector(quiet) | length(quiet)  != 1) {
     stop("quiet by be a either TRUE or FALSE")
@@ -70,7 +68,7 @@ make_case_score <- function(data,
     if (any(data$number_of_observations  < 3)) {
       message(paste0("Note: There are ",
                      sum(data$number_of_observations <= 3),
-                     " groups with ", minimum_case_score,
+                     " groups with ", minimum_k_score,
                      " or fewer observations."))
     }
   }

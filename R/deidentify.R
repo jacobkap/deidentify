@@ -55,9 +55,8 @@ deidentify_data <- function(data,
                             quiet = FALSE) {
 
   if (!is.null(cols_to_encrpyt) & is.null(seeds_for_encryption)) {
-    seeds_for_encryption <- sample(1e3:1e7, length(cols_to_encrpyt))
+    seeds_for_encryption <- sample(1e3:1e11, length(cols_to_encrpyt))
   }
-  column_types <- apply(data, 2, typeof)
 
   data <-
     data %>%
