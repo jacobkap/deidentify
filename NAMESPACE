@@ -2,6 +2,10 @@
 
 export("%>%")
 export(deidentify_data)
+export(gen_aes_key)
+export(gen_sodium_key)
 export(graph_group_rare_values)
 export(make_k_score)
 importFrom(magrittr,"%>%")
+importFrom(openssl,aes_keygen)
+importFrom(sodium,keygen)

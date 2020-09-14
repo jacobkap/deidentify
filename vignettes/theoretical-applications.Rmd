@@ -1,5 +1,5 @@
 ---
-title: "Theoretical Applications"
+title: "Theoretical Applications for deidentify"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Theoretical Applications}
@@ -17,3 +17,5 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(deidentify)
 ```
+# What deidentify aims to do
+The goal of deidentify is to allow the user an interface where they can pass a number 

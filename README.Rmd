@@ -59,3 +59,7 @@ deidentify_data(new_data,cols_to_encrpyt = c("name","new_col"))
 ```
 
 While the above should give you a starting sense on how to use deidentify, there are more features which can be used. These are covered more in depth in the vignettes for the package. 
+```{r}
+usethis::use_vignette("theoretical-applications","Theoretical Applications")
+```
+

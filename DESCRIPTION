@@ -24,7 +24,10 @@ Imports:
     dplyr,
     caesar (>= 1.1.0),
     magrittr,
-    ggplot2
+    ggplot2,
+    cyphr,
+    progress,
+    openssl
 Suggests: 
     covr,
     spelling,
