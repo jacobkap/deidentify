@@ -7,24 +7,24 @@ aggregating numeric or date columns.}
 \usage{
 deidentify_data(
   data,
+  date_cols = NULL,
+  date_aggregation = c("week", "month", "bimonth", "quarter", "halfyear", "year"),
   cols_to_encrpyt = NULL,
-  seeds_for_encryption = NULL,
   group_rare_values_cols = NULL,
   group_rare_values_limit = NULL,
   group_rare_values_text = NA,
-  time_aggregation = c("week", "month", "bimonth", "quarter", "halfyear", "year"),
   quiet = FALSE
 )
 }
 \arguments{
 \item{data}{A data.frame with the data you want to de-identify.}
 
+\item{date_aggregation}{A string with the time unit to aggregate all Date variables to.
+Can take one of the following: 'week', 'month', 'bimonth', 'quarter',
+'halfyear', 'year'.}
+
 \item{cols_to_encrpyt}{A string or vector of strings with the columns that you want to encrypt
 using the \code{seed_cipher()} function from the \code{caesar} package.}
-
-\item{seeds_for_encryption}{A string or vector of strings with the columns that you want to use for
-each column in the cols_to_encrypt parameter. If NULL, will use random seeds
-and will print those seeds if the parameter quiet is set to TRUE.}
 
 \item{group_rare_values_cols}{A string or vector of strings with the columns that you want to convert
 rare values (below a certain percent of all values as set in
@@ -39,10 +39,6 @@ is rare enough to change to NA (or the string set in \code{group_rare_values_tex
 for what to rename the values that are determined to be rare enough (based on
 threshold set in \code{group_rare_values_limit} to rename (default is just
 calling them NA).}
-
-\item{time_aggregation}{A string with the time unit to aggregate all Date variables to.
-Can take one of the following: 'week', 'month', 'bimonth', 'quarter',
-'halfyear', 'year'.}
 
 \item{quiet}{A Boolean for whether you want to output a message that tells you which
 columns that you are encrypting and the seed set for each column to

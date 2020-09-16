@@ -22,9 +22,9 @@ Depends:
 Imports:
     lubridate,
     dplyr,
-    caesar (>= 1.1.0),
     magrittr,
-    ggplot2
+    ggplot2,
+    crimeutils
 Suggests: 
     covr,
     spelling,

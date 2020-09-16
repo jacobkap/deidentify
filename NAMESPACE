@@ -3,5 +3,6 @@
 export("%>%")
 export(deidentify_data)
 export(graph_group_rare_values)
+export(make_deidentify_choices_reported)
 export(make_k_score)
 importFrom(magrittr,"%>%")

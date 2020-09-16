@@ -1,0 +1,65 @@
+---
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  pdf_document: 
+  keep_tex:  false
+params:
+  set_title: ''
+  data: ''
+  graphs_list: ''
+  rare_value_list: ''
+  choices_table_preferred : ''
+  choices_table_all: ''
+---
+
+---
+title: `r params$set_title`
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+knitr::opts_chunk$set(error = FALSE)
+library(gt)
+```
+
+
+This report shows the effect of various choices made when using the `deidentify` package on how private your data it. It shows what the results of the data look like when considering how many people are in each group for every choice you can make. If the user set a preferred range (or minimum) k-score for results, it starts by showing the choices that satisfy a set parameter of accepting number of rows for each group. Then (or if no preferred range/minimum is set this will be the first table) it shows the k-score for every possible combination of choices. Finally, it shows the number of unique dates at every level of aggregation (week, month, bimonth, quarter, halfway, and year) for each date columns, and the percent of unique values dropped when excluding values that are less common than x% (where x is 1%-99%) limit. 
+
+ 
+
+```{r }
+if (!is.null(params$choices_table_preferred)) {
+  gt::gt(params$choices_table_preferred)
+}
+```
+
+\pagebreak
+
+```{r}
+gt::gt(params$choices_table_all)
+```
+
+\pagebreak
+
+## Graphs showing what percent of unique values are dropped when excluding any value that is less than x% of the non-NA data (x ranges from 1% to 99%).
+
+```{r fig.cap = names(params$rare_value_list)}
+for(plots in params$rare_value_list){
+  print(plots)
+  message("\n\n\\pagebreak\n")
+}
+```
+
+\pagebreak
+
+## Graphs showing how many unique dates are in each Date column for the current data and at every level of aggregation.
+
+```{r fig.cap = names(params$graphs_list)}
+for(plots in params$graphs_list){
+  print(plots)
+  message("\n\n\\pagebreak\n")
+}
+```
+

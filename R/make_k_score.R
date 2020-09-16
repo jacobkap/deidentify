@@ -15,7 +15,7 @@
 #' @param quiet
 #' A Boolean (default FALSE) for whether you want to output a message that tells you if
 #' there are groups with too few observations - you can set how many is 'too few'
-#' in the paramter `minimum_k_score`, default is 3.
+#' in the parameter `minimum_k_score`, default is 3.
 #' @param minimum_k_score
 #' A single integer which sets the number of observations in each group that will
 #' message (if `quiet` is FALSE) saying how many groups have fewer observations below
@@ -27,9 +27,9 @@
 #' @examples
 #' make_k_score(mtcars, columns = c("cyl", "vs", "am", "gear"))
 make_k_score <- function(data,
-                            columns,
-                            quiet = FALSE,
-                            minimum_k_score = 3) {
+                         columns = NULL,
+                         quiet = FALSE,
+                         minimum_k_score = 3) {
 
   if (!is.numeric(minimum_k_score) | length(minimum_k_score) != 1) {
     stop("minimum_k_score must be a single positive integer.")
@@ -46,6 +46,9 @@ make_k_score <- function(data,
   # Tibbles and data.tables also return positive for as.data.table
   if (!is.data.frame(data)) {
     stop("data must be a data.frame")
+  }
+  if (is.null(columns)) {
+    columns <- names(data)
   }
   if (!is.character(columns) | length(columns) < 1) {
     stop("columns must be a vector of strings with the names of the columns you want

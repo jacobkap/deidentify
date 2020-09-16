@@ -4,7 +4,7 @@
 \alias{make_k_score}
 \title{Make k score out of de-identified data}
 \usage{
-make_k_score(data, columns, quiet = FALSE, minimum_k_score = 3)
+make_k_score(data, columns = NULL, quiet = FALSE, minimum_k_score = 3)
 }
 \arguments{
 \item{data}{The data.frame with the data you want to make the k score from.}
