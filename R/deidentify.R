@@ -2,16 +2,11 @@
 #' aggregating numeric or date columns.
 #'
 #'
-#'
 #' @param data
 #' A data.frame with the data you want to de-identify.
-#' @param cols_to_encrpyt
+#' @param cols_to_encrypt
 #' A string or vector of strings with the columns that you want to encrypt
 #' using the `seed_cipher()` function from the `caesar` package.
-#' @param seeds_for_encryption
-#' A string or vector of strings with the columns that you want to use for
-#' each column in the cols_to_encrypt parameter. If NULL, will use random seeds
-#' and will print those seeds if the parameter quiet is set to TRUE.
 #' @param group_rare_values_cols
 #' A string or vector of strings with the columns that you want to convert
 #' rare values (below a certain percent of all values as set in
@@ -26,7 +21,11 @@
 #' for what to rename the values that are determined to be rare enough (based on
 #' threshold set in `group_rare_values_limit` to rename (default is just
 #' calling them NA).
-#' @param time_aggregation
+#' @param date_cols
+#' A vector of strings with the name of date columns that you want to be aggregated
+#' to the unit set in the `date_aggreagtion` parameter. If NULL, will use
+#' all date columns in the data.
+#' @param date_aggregation
 #' A string with the time unit to aggregate all Date variables to.
 #' Can take one of the following: 'week', 'month', 'bimonth', 'quarter',
 #'  'halfyear', 'year'.
@@ -41,32 +40,34 @@
 #' @examples
 #' @export
 deidentify_data <- function(data,
-                            cols_to_encrpyt = NULL,
-                            seeds_for_encryption = NULL,
-                            group_rare_values_cols = NULL,
-                            group_rare_values_limit = NULL,
-                            group_rare_values_text = NA,
-                            time_aggregation = c("week",
+                            date_cols = NULL,
+                            date_aggregation = c("week",
                                                  "month",
                                                  "bimonth",
                                                  "quarter",
                                                  "halfyear",
                                                  "year"),
+                            cols_to_encrypt = NULL,
+                            group_rare_values_cols = NULL,
+                            group_rare_values_limit = NULL,
+                            group_rare_values_text = NA,
                             quiet = FALSE) {
 
-  if (!is.null(cols_to_encrpyt) & is.null(seeds_for_encryption)) {
-    seeds_for_encryption <- sample(1e3:1e11, length(cols_to_encrpyt))
-  }
+  # if (!is.null(cols_to_encrypt) & is.null(seeds_for_encryption)) {
+  #   seeds_for_encryption <- sample(1e3:1e11, length(cols_to_encrypt))
+  # }
 
   data <-
     data %>%
-    dplyr::mutate_if(lubridate::is.Date, lubridate::floor_date, unit = time_aggregation)
+    dplyr::mutate_if(lubridate::is.Date, lubridate::floor_date, unit = date_aggregation)
 
 
   # Looks in each selected columns and replaces all the values that are less
   # than k% of the non-NA total with a selected replacement text (default
   # is NA). This is to reduce privacy concerns with rare values (i.e. if
   # person is only one with X offense, can identify through that).
+  group_rare_values_limit <- rep(group_rare_values_limit,
+                                 length.out = length(group_rare_values_cols))
   if (!is.null(group_rare_values_cols)) {
     for (i in 1:length(group_rare_values_cols)) {
       col <- group_rare_values_cols[i]
@@ -78,20 +79,35 @@ deidentify_data <- function(data,
   }
 
 
-  if (!is.null(cols_to_encrpyt)) {
-    # Encrypts all of the columns that should be encrypted.
-    for (i in 1:length(cols_to_encrpyt)) {
-      col <- cols_to_encrpyt[i]
-      data[, col] <- caesar::seed_cipher(data[, col,drop = T], seed = seeds_for_encryption[i])
-    }
-
-    cols_and_seeds        <- cols_to_encrpyt
-    names(cols_and_seeds) <- seeds_for_encryption
-    print(paste0("Below are the columns that you encrypted and the seed set for each column. Please keep a record of this so you can decrypt later."))
-    print(cols_and_seeds)
-  }
+  # if (!is.null(cols_to_encrypt)) {
+  #   # Encrypts all of the columns that should be encrypted.
+  #   for (i in 1:length(cols_to_encrypt)) {
+  #     col <- cols_to_encrypt[i]
+  #     data[, col] <- caesar::seed_cipher(data[, col,drop = T], seed = seeds_for_encryption[i])
+  #   }
+  #
+  #   cols_and_seeds        <- cols_to_encrypt
+  #   names(cols_and_seeds) <- seeds_for_encryption
+  #   print(paste0("Below are the columns that you encrypted and the seed set for each column. Please keep a record of this so you can decrypt later."))
+  #   print(cols_and_seeds)
+  # }
 
   return(data)
+}
+
+deidentify_date <- function(data, date_aggregation) {
+  data <- lubridate::floor_date(data, date_aggregation)
+
+  return(data)
+}
+
+deidentify_group <- function(data,
+                             group_rare_values_limit,
+                             group_rare_values_text) {
+  values_under_k_percent <-
+    get_values_rarer_than_k_percent(data,
+                                    group_rare_values_limit)
+  data[data %in% values_under_k_percent] <- group_rare_values_text
 }
 
 get_values_rarer_than_k_percent <- function(data,

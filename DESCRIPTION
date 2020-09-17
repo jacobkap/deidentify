@@ -22,7 +22,6 @@ Depends:
 Imports:
     lubridate,
     dplyr,
-    caesar (>= 1.1.0),
     magrittr,
     ggplot2,
     cyphr,
