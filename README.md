@@ -3,7 +3,7 @@
 
 <!-- badges: start -->
 
-# deidentify <img src="man/figures/deidentify_badge.png" align="right"  width = "120"/>
+<img src="man/figures/deidentify_badge.png" align="right"  width = "120"/>
 
 [![Travis build
 status](https://travis-ci.org/jacobkap/deidentify.svg?branch=master)](https://travis-ci.org/jacobkap/deidentify)
