@@ -5,5 +5,6 @@ articles:
   deidentify_data: deidentify_data.html
   k_score: k_score.html
   theoretical-applications: theoretical-applications.html
-last_built: 2020-09-16T19:01Z
+  visualizing_deidentification_decisions: visualizing_deidentification_decisions.html
+last_built: 2020-09-17T19:37Z
 

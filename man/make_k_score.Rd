@@ -13,7 +13,7 @@ make_k_score(data, columns = NULL, quiet = FALSE, minimum_k_score = 3)
 
 \item{quiet}{A Boolean (default FALSE) for whether you want to output a message that tells you if
 there are groups with too few observations - you can set how many is 'too few'
-in the paramter \code{minimum_k_score}, default is 3.}
+in the parameter \code{minimum_k_score}, default is 3.}
 
 \item{minimum_k_score}{A single integer which sets the number of observations in each group that will
 message (if \code{quiet} is FALSE) saying how many groups have fewer observations below

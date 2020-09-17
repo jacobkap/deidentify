@@ -35,14 +35,19 @@ graph_group_rare_values <- function(data) {
 
 }
 
-#' Title
+#' Create a barplot showing the number of unique dates at each level of aggregation
+#'
+#' This takes a vector of Dates and creates a barplot showing how many unique dates are in the data, at the original inputted unit and at every level of aggregation (week, month, bimonth, quarter, halfyear, year).
 #'
 #' @param data
+#' A vector of dates in the Date format.
 #'
 #' @return
+#' A `ggplot2` graph
 #' @export
 #'
 #' @examples
+#' graph_aggregate_dates(as.Date(c("2020-04-15", "2012-08-07", "1996-04-24", "2020-01-22")))
 graph_aggregate_dates <- function(data) {
   data <- unique(data)
   final <- data.frame(date_aggregation = "No Aggregation",
@@ -68,8 +73,8 @@ graph_aggregate_dates <- function(data) {
                                                   "Quarter",
                                                   "Halfyear",
                                                   "Year")))
-  p <- ggplot2::ggplot(final, ggplot2::aes(x = number_of_unique_dates,
-                                      y = date_aggregation)) +
+  p <- ggplot2::ggplot(final, ggplot2::aes_string(x = "number_of_unique_dates",
+                                      y = "date_aggregation")) +
     ggplot2::geom_col() +
     ggplot2::theme_minimal() +
     ggplot2::labs(x = "# of Unique Date Values",
