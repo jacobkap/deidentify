@@ -1,22 +1,32 @@
-#' @title generate aes or libsodium keys
+#' @title Generate aes or libsodium key
 #'
 #' @param ...
-#' arguments to pass to openssl::aes_keygen or sodium::keygen
+#' arguments to pass to `openssl::aes_keygen()` or `sodium::keygen()`
 #' @return
-#' return a cyphr key object for use with deidentify_id and identify_id functions
+#' A `cyphr` key object for use with `deidentify_id()` and identify_id functions
 #' @importFrom sodium keygen
 #' @importFrom openssl aes_keygen
 #'
 #' @examples
 #' \dontrun{gen_aes_key(12)}
-#'@export
+#' @export
 gen_aes_key <- function(...) {
   cykey <- cyphr::key_openssl(key = aes_keygen(...))
   cykey
 }
 
-#'@export
+
+#' @title Generate sodium key
+#' @param ...
+#' arguments to pass to `openssl::aes_keygen()` or `sodium::keygen()`
+#'
+#' @return
+#' A `cyphr` key object for use with `deidentify_id()` and identify_id functions
+#' @export
+#'
+#' @examples
+#' \dontrun{key_sodium(12)}
 gen_sodium_key <- function(...) {
-  sodkey <- cyphr::key_sodium(key = keygen(...))
+  sodkey <- cyphr::key_sodium(key = sodium::keygen(...))
   sodkey
 }

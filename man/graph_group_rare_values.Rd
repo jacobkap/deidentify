@@ -2,20 +2,22 @@
 % Please edit documentation in R/graphs.R
 \name{graph_group_rare_values}
 \alias{graph_group_rare_values}
-\title{Graph how much data is dropped for each percent limit to remove rare values}
+\title{Graph effect of dropping "rare" values from a vector of data}
 \usage{
-graph_group_rare_values(data)
+graph_group_rare_values(data, show_unique_values = TRUE)
 }
 \arguments{
 \item{data}{A vector of strings or numbers.}
+
+\item{show_unique_values}{If TRUE (default), will show the number of unique values in the data after excluding values that are rarer than k\% (from 1-99\%). Else, will show the percent of the data dropped after excluding values that are rarer than k\% (from 1-99\%)}
 }
 \value{
 A \code{ggplot2} graph
 }
 \description{
-Makes a graph showing what percent of values are dropped when excluding values
-that are less common than k\% of the data for every value of k from 1\%-100\%.
+Makes a graph showing what either the number of unique values or the percent of values are dropped when excluding values that are less common than k\% of the data for every value of k from 1\%-100\%.
 }
 \examples{
 graph_group_rare_values(mtcars$mpg)
+graph_group_rare_values(mtcars$mpg, show_unique_values = FALSE)
 }

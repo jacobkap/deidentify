@@ -8,6 +8,13 @@
 
 <title>Function reference • deidentify</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -40,6 +47,7 @@
 
 
 <meta property="og:title" content="Function reference" />
+<meta property="og:image" content="/logo.png" />
 
 
 
@@ -100,7 +108,7 @@
       <a href="../articles/k_score.html">Determining a K score for a dataset</a>
     </li>
     <li>
-      <a href="../articles/theoretical-applications.html">Theoretical Applications</a>
+      <a href="../articles/theoretical-applications.html">Theoretical Applications for deidentify</a>
     </li>
     <li>
       <a href="../articles/visualizing_deidentification_decisions.html">Visualizing De-identification Decisions</a>
@@ -165,6 +173,24 @@ aggregating numeric or date columns.</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="deidentify_text.html">deidentify_text()</a></code> </p>
+        </td>
+        <td><p>methods to deidentify different forms of data</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="gen_aes_key.html">gen_aes_key()</a></code> </p>
+        </td>
+        <td><p>Generate aes or libsodium key</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="gen_sodium_key.html">gen_sodium_key()</a></code> </p>
+        </td>
+        <td><p>Generate sodium key</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="graph_aggregate_dates.html">graph_aggregate_dates()</a></code> </p>
         </td>
         <td><p>Create a barplot showing the number of unique dates at each level of aggregation</p></td>
@@ -173,7 +199,7 @@ aggregating numeric or date columns.</p></td>
         <td>
           <p><code><a href="graph_group_rare_values.html">graph_group_rare_values()</a></code> </p>
         </td>
-        <td><p>Graph how much data is dropped for each percent limit to remove rare values</p></td>
+        <td><p>Graph effect of dropping "rare" values from a vector of data</p></td>
       </tr><tr>
         
         <td>

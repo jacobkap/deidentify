@@ -1,9 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<!-- badges: start -->
+# deidentify <img src="man/figures/logo.png" align="right"  width = "139"/>
 
-<img src="man/figures/deidentify_badge.png" align="right"  width = "120"/>
+<!-- badges: start -->
 
 [![Travis build
 status](https://travis-ci.org/jacobkap/deidentify.svg?branch=master)](https://travis-ci.org/jacobkap/deidentify)

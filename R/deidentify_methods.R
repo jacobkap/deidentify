@@ -1,26 +1,27 @@
-#'@title methods to deidentify different forms of data
+#'@title methods to de-identify different forms of data
 #'@details
 #'@param .data
 #'a data frame with columns to encrypt
 #'@param cols_to_encrypt
 #'A character vector with the names associated with the columns to encrypt
 #'@param key
-#'A cyphr key generated from the cyphr package
+#'A cyphr key generated from the `cyphr` package
 #'@return
 #'A Dataframe with encrypted columns ending with the prefix 'encrypt_id'
 #'@examples
 #'\dontrun{
+#'deidentify_text(mtcars, "mpg")
 #'}
 #'@export
-deidentify_text <- function(.data,cols_to_encrypt,key = NULL){
+deidentify_text <- function(.data, cols_to_encrypt, key = NULL){
   if(!is.character(cols_to_encrypt)){
     stop("cols_to_encrypt must be a character vector!")
   }
   if(class(key) != "cyphr_key"){
     stop("key must be a cyphr key")
   }
-  .data[,cols_to_encrypt,drop = F] %>%
-    dplyr::mutate(dplyr::across(everything(),list("encrypt_id" = ~.apply_enc(as.character(.),key = key))))
+  .data[,cols_to_encrypt, drop = FALSE] %>%
+    dplyr::mutate(dplyr::across(dplyr::everything(),list("encrypt_id" = ~.apply_enc(as.character(.),key = key))))
 }
 
 

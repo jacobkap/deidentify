@@ -79,19 +79,6 @@ deidentify_data <- function(data,
   }
 
 
-  # if (!is.null(cols_to_encrypt)) {
-  #   # Encrypts all of the columns that should be encrypted.
-  #   for (i in 1:length(cols_to_encrypt)) {
-  #     col <- cols_to_encrypt[i]
-  #     data[, col] <- caesar::seed_cipher(data[, col,drop = T], seed = seeds_for_encryption[i])
-  #   }
-  #
-  #   cols_and_seeds        <- cols_to_encrypt
-  #   names(cols_and_seeds) <- seeds_for_encryption
-  #   print(paste0("Below are the columns that you encrypted and the seed set for each column. Please keep a record of this so you can decrypt later."))
-  #   print(cols_and_seeds)
-  # }
-
   return(data)
 }
 

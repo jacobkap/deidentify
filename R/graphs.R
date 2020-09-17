@@ -1,17 +1,27 @@
-#' Graph how much data is dropped for each percent limit to remove rare values
+#' Graph effect of dropping "rare" values from a vector of data
 #'
-#' Makes a graph showing what percent of values are dropped when excluding values
-#' that are less common than k% of the data for every value of k from 1%-100%.
+#' Makes a graph showing what either the number of unique values or the percent of values are dropped when excluding values that are less common than k% of the data for every value of k from 1%-100%.
 #'
 #' @param data
 #' A vector of strings or numbers.
+#' @param show_unique_values
+#' If TRUE (default), will show the number of unique values in the data after excluding values that are rarer than k% (from 1-99%). Else, will show the percent of the data dropped after excluding values that are rarer than k% (from 1-99%)
 #' @export
 #' @return
 #' A `ggplot2` graph
 #'
 #' @examples
 #' graph_group_rare_values(mtcars$mpg)
-graph_group_rare_values <- function(data) {
+#' graph_group_rare_values(mtcars$mpg, show_unique_values = FALSE)
+graph_group_rare_values <- function(data, show_unique_values = TRUE) {
+  y_label <- "# of Unique Values"
+  y_var <- "number_of_unique_values"
+  title <- "Number of Unique Values When Excluding Values Rarer than K% of the Data"
+  if (!show_unique_values) {
+    y_label <- "% of Data Dropped"
+    y_var <- "percent_dropped"
+    title  <- "Percent of Data Removed When Excluding Values Rarer than K% of the Data"
+  }
   length_non_na <- length(data[!is.na(data)])
   graph_data <- data.frame(k_percent = 1:100,
                            percent_dropped = NA)
@@ -21,17 +31,18 @@ graph_group_rare_values <- function(data) {
                                             k_percent)
     temp <- data[data %in% temp]
     temp <- length(temp)
-    graph_data$percent_dropped[graph_data$k_percent == k_percent] <- percent_change(length_non_na,
+    graph_data$percent_dropped[k_percent] <- percent_change(length_non_na,
                                                                                     length_non_na - temp)
+    graph_data$number_of_unique_values[k_percent] <- length_non_na - temp
   }
   graph_data$percent_dropped <- graph_data$percent_dropped * -1
   ggplot2::ggplot(graph_data, ggplot2::aes_string(x = "k_percent",
-                                                  y = "percent_dropped")) +
+                                                  y = y_var)) +
     ggplot2::geom_line(size = 1.4, color = "#e41a1c") +
     ggplot2::theme_minimal() +
     ggplot2::labs(x = "'K%' Limit to Drop Values Below",
-                  y = "% of Data Dropped",
-                  title = "Percent of Data Removed when Excluding Values Rarer than K% of the Data")
+                  y = y_label,
+                  title = title)
 
 }
 
