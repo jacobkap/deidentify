@@ -51,7 +51,5 @@ Beyond deleting identifying info (e.g. people's names), the main way to de-ident
 
 When de-identifying private data, you need to consider the balance between having too many bins in each column (e.g. having age be how old you are in years) to too few bins (e.g. group age into units of 30 years each such as 0-30, 31-60, 61+). Essentially, this is the balance between having enormous groups with a lot of people in them, which is extremely hard to de-identify but is not very useful, or having small groups with few people in each, which is easier to de-identify but much more useful. As researchers, we built some tools in this package to allow you to set the balance you want and the package will tell you what decisions to make (literally what parameters in the `deidentify_data()` function to set) to get data de-identified in a way that meets this balance.
 
-
-
-
 While the above should give you a starting sense on how to use `deidentify`, there are more features which can be used. These are covered more in depth in the vignettes for the package. 
+

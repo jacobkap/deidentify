@@ -24,7 +24,9 @@ Imports:
     dplyr,
     magrittr,
     ggplot2,
-    crimeutils
+    cyphr,
+    progress,
+    openssl
 Suggests: 
     covr,
     spelling,
