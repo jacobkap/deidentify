@@ -11,7 +11,7 @@ Authors@R:
     family = "Hoyos-Torres",
     role = c("aut"), 
     email = "sebtorres7021@gmail.com"))
-Description: What the package does (one paragraph).
+Description: De-identifies private data to release to the public.
 License: MIT + file LICENSE
 URL: https://jacobkap.github.io/deidentify/, https://github.com/jacobkap/deidentify
 BugReports: https://github.com/jacobkap/deidentify/issues
