@@ -6,8 +6,5 @@ articles:
   k_score: k_score.html
   theoretical-applications: theoretical-applications.html
   visualizing_deidentification_decisions: visualizing_deidentification_decisions.html
-last_built: 2020-09-18T02:18Z
-urls:
-  reference: https://jacobkap.github.io/deidentify///reference
-  article: https://jacobkap.github.io/deidentify///articles
+last_built: 2020-09-18T02:43Z
 
