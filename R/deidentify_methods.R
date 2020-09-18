@@ -30,10 +30,13 @@ deidentify_text <- function(.data,cols_to_encrypt,key = NULL){
   if(!all(names(.data) %in% cols_to_encrypt)){
     stop("You have selected columns which are not in the data.")
   }
+  if(!inherits(.data,"data.frame")){
+    stop("You must pass a dataframe into the function.")
+  }
   enc_data <- .data[,cols_to_encrypt,drop = F] %>%
-    dplyr::mutate(dplyr::across(everything(),list("encrypt_id" = ~.apply_enc(as.character(.),key = key)))) %>%
+    dplyr::mutate(dplyr::across(dplyr::everything(),list("encrypt_id" = ~.apply_enc(as.character(.),key = key)))) %>%
     #rejoin initial data based on unencrypted columns
-    left_join(.data,by = cols_to_encrypt)
+    dplyr::left_join(.data,by = cols_to_encrypt)
   return(enc_data)
 }
 
