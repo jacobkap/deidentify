@@ -13,6 +13,8 @@ Authors@R:
     email = "sebtorres7021@gmail.com"))
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
+URL: https://jacobkap.github.io/deidentify/, https://github.com/jacobkap/deidentify
+BugReports: https://github.com/jacobkap/deidentify/issues
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

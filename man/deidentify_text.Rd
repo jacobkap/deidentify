@@ -2,7 +2,7 @@
 % Please edit documentation in R/deidentify_methods.R
 \name{deidentify_text}
 \alias{deidentify_text}
-\title{methods to deidentify different forms of data}
+\title{methods to de-identify different forms of data}
 \usage{
 deidentify_text(.data, cols_to_encrypt, key = NULL)
 }
@@ -11,15 +11,16 @@ deidentify_text(.data, cols_to_encrypt, key = NULL)
 
 \item{cols_to_encrypt}{A character vector with the names associated with the columns to encrypt}
 
-\item{key}{A cyphr key generated from the cyphr package}
+\item{key}{A cyphr key generated from the \code{cyphr} package}
 }
 \value{
 A Dataframe with encrypted columns ending with the prefix 'encrypt_id'
 }
 \description{
-methods to deidentify different forms of data
+methods to de-identify different forms of data
 }
 \examples{
 \dontrun{
+deidentify_text(mtcars, "mpg")
 }
 }
