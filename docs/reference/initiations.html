@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • deidentify</title>
+<title>Cook County Initiations Data — initiations • deidentify</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Cook County Initiations Data — initiations" />
+<meta property="og:description" content="This is a sample of Cook County's Initiations data available on the Cook County Open Data Portal" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -66,7 +67,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -137,97 +138,31 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Cook County Initiations Data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jacobkap/deidentify/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>initiations.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>This is a sample of Cook County's Initiations data available on the Cook County Open Data Portal</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='kw'>initiations</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="deidentify_choices_table.html">deidentify_choices_table()</a></code> </p>
-        </td>
-        <td><p>Make a data.frame showing either the outcome (k-score) of all possible de-identify choices or only those that meet a certain k-score threshold.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="deidentify_data.html">deidentify_data()</a></code> </p>
-        </td>
-        <td><p>De-identify data through encrypting text columns, grouping rare values, and,
-aggregating numeric or date columns.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="deidentify_text.html">deidentify_text()</a></code> </p>
-        </td>
-        <td><p>methods to deidentify different forms of data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="gen_aes_key.html">gen_aes_key()</a></code> </p>
-        </td>
-        <td><p>Generate aes or libsodium key</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="gen_sodium_key.html">gen_sodium_key()</a></code> </p>
-        </td>
-        <td><p>Generate sodium key</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="graph_aggregate_dates.html">graph_aggregate_dates()</a></code> </p>
-        </td>
-        <td><p>Create a barplot showing the number of unique dates at each level of aggregation</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="graph_group_rare_values.html">graph_group_rare_values()</a></code> </p>
-        </td>
-        <td><p>Graph effect of dropping "rare" values from a vector of data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="initiations.html">initiations</a></code> </p>
-        </td>
-        <td><p>Cook County Initiations Data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="make_deidentify_choices_reported.html">make_deidentify_choices_reported()</a></code> </p>
-        </td>
-        <td><p>Produce a PDF showing tables of possible de-identification choices, choices that meet a set parameter, and graphs of each decision for individual variables.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="make_k_score.html">make_k_score()</a></code> </p>
-        </td>
-        <td><p>Make k score out of de-identified data</p></td>
-      </tr>
-    </tbody>
-    </table>
+
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>A tibble with 1000 rows and 38 variable</p><dl>
+for in depth definitions, look at https://datacatalog.cookcountyil.gov/Courts/Initiation/7mck-ehwz
+</dl>
+
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://datacatalog.cookcountyil.gov/Courts/Initiation/7mck-ehwz'>https://datacatalog.cookcountyil.gov/Courts/Initiation/7mck-ehwz</a></p>
+
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>

@@ -27,7 +27,7 @@ deidentify_text <- function(.data,cols_to_encrypt,key = NULL){
     stop("key must be a cyphr key")
   }
   # check that the column name actually exists in the data.
-  if(!all(names(.data) %in% cols_to_encrypt)){
+  if(!all(cols_to_encrypt %in% names(.data))){
     stop("You have selected columns which are not in the data.")
   }
   if(!inherits(.data,"data.frame")){

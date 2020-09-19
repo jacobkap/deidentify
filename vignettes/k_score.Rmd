@@ -1,8 +1,8 @@
 ---
-title: "Determining a K score for a dataset"
+title: "Determining a K-score for a dataset"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Determining a K score for a dataset}
+  %\VignetteIndexEntry{Determining a K-score for a dataset}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -16,4 +16,33 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(deidentify)
+```
+
+
+```{r}
+names(deidentify::initiations)
+head(data.frame(deidentify::initiations))
+```
+
+
+```{r}
+temp <- make_k_score(deidentify::initiations, columns = c("race"))
+temp
+summary(temp$number_of_observations)
+
+```
+
+```{r}
+temp <- make_k_score(deidentify::initiations, columns = c("race", "gender"))
+temp
+summary(temp$number_of_observations)
+
+```
+```{r}
+temp <- make_k_score(deidentify::initiations, columns = c("race", "gender", "offense_category"))
+nrow(temp)
+head(temp)
+tail(temp)
+summary(temp$number_of_observations)
+
 ```

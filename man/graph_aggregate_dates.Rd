@@ -16,5 +16,5 @@ A \code{ggplot2} graph
 This takes a vector of Dates and creates a barplot showing how many unique dates are in the data, at the original inputted unit and at every level of aggregation (week, month, bimonth, quarter, halfyear, year).
 }
 \examples{
-graph_aggregate_dates(as.Date(c("2020-04-15", "2012-08-07", "1996-04-24", "2020-01-22")))
+graph_aggregate_dates(deidentify::initiations$received_date)
 }

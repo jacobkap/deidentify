@@ -149,7 +149,7 @@
     <p>Makes a graph showing what either the number of unique values or the percent of values are dropped when excluding values that are less common than k% of the data for every value of k from 1%-100%.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>graph_group_rare_values</span>(<span class='kw'>data</span>, show_unique_values = <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>graph_group_rare_values</span>(<span class='kw'>data</span>, percent_dropped = <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -160,7 +160,7 @@
     </tr>
     <tr>
       <th>show_unique_values</th>
-      <td><p>If TRUE (default), will show the number of unique values in the data after excluding values that are rarer than k% (from 1-99%). Else, will show the percent of the data dropped after excluding values that are rarer than k% (from 1-99%)</p></td>
+      <td><p>If FALSE (default), will show the number of unique values in the data after excluding values that are rarer than k% (from 1-99%). Else, will show the percent of the data dropped after excluding values that are rarer than k% (from 1-99%)</p></td>
     </tr>
     </table>
 
@@ -171,7 +171,7 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>graph_group_rare_values</span>(<span class='kw'>mtcars</span><span class='op'>$</span><span class='kw'>mpg</span>)
 </div><div class='img'><img src='graph_group_rare_values-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>graph_group_rare_values</span>(<span class='kw'>mtcars</span><span class='op'>$</span><span class='kw'>mpg</span>, show_unique_values = <span class='fl'>FALSE</span>)
-</div><div class='img'><img src='graph_group_rare_values-2.png' alt='' width='700' height='433' /></div></pre>
+</div><div class='output co'>#&gt; <span class='error'>Error in graph_group_rare_values(mtcars$mpg, show_unique_values = FALSE): unused argument (show_unique_values = FALSE)</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

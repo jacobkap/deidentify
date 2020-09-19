@@ -12,7 +12,7 @@
 #' @export
 gen_aes_key <- function(...) {
   cykey <- cyphr::key_openssl(key = aes_keygen(...))
-  cykey
+  return(cykey)
 }
 
 
@@ -28,5 +28,5 @@ gen_aes_key <- function(...) {
 #' \dontrun{key_sodium(12)}
 gen_sodium_key <- function(...) {
   sodkey <- cyphr::key_sodium(key = sodium::keygen(...))
-  sodkey
+  return(sodkey)
 }

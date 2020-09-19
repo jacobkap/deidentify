@@ -4,20 +4,20 @@
 #'
 #' @param data
 #' A vector of strings or numbers.
-#' @param show_unique_values
-#' If TRUE (default), will show the number of unique values in the data after excluding values that are rarer than k% (from 1-99%). Else, will show the percent of the data dropped after excluding values that are rarer than k% (from 1-99%)
+#' @param percent_dropped
+#' If FALSE (default), will show the number of unique values in the data after excluding values that are rarer than k% (from 1-99%). Else, will show the percent of the data dropped after excluding values that are rarer than k% (from 1-99%)
 #' @export
 #' @return
 #' A `ggplot2` graph
 #'
 #' @examples
-#' graph_group_rare_values(mtcars$mpg)
-#' graph_group_rare_values(mtcars$mpg, show_unique_values = FALSE)
-graph_group_rare_values <- function(data, show_unique_values = TRUE) {
+#' graph_group_rare_values(deidentify::initiations$offense_category)
+#' graph_group_rare_values(deidentify::initiations$offense_category, percent_dropped = FALSE)
+graph_group_rare_values <- function(data, percent_dropped = FALSE) {
   y_label <- "# of Unique Values"
   y_var <- "number_of_unique_values"
   title <- "Number of Unique Values When Excluding Values Rarer than K% of the Data"
-  if (!show_unique_values) {
+  if (percent_dropped) {
     y_label <- "% of Data Dropped"
     y_var <- "percent_dropped"
     title  <- "Percent of Data Removed When Excluding Values Rarer than K% of the Data"
@@ -32,7 +32,7 @@ graph_group_rare_values <- function(data, show_unique_values = TRUE) {
     temp <- data[data %in% temp]
     temp <- length(temp)
     graph_data$percent_dropped[k_percent] <- percent_change(length_non_na,
-                                                                                    length_non_na - temp)
+                                                            length_non_na - temp)
     graph_data$number_of_unique_values[k_percent] <- length_non_na - temp
   }
   graph_data$percent_dropped <- graph_data$percent_dropped * -1
@@ -58,7 +58,7 @@ graph_group_rare_values <- function(data, show_unique_values = TRUE) {
 #' @export
 #'
 #' @examples
-#' graph_aggregate_dates(as.Date(c("2020-04-15", "2012-08-07", "1996-04-24", "2020-01-22")))
+#' graph_aggregate_dates(deidentify::initiations$received_date)
 graph_aggregate_dates <- function(data) {
   data <- unique(data)
   final <- data.frame(date_aggregation = "No Aggregation",

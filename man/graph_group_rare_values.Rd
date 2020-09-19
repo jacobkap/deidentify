@@ -4,12 +4,12 @@
 \alias{graph_group_rare_values}
 \title{Graph effect of dropping "rare" values from a vector of data}
 \usage{
-graph_group_rare_values(data, show_unique_values = TRUE)
+graph_group_rare_values(data, percent_dropped = FALSE)
 }
 \arguments{
 \item{data}{A vector of strings or numbers.}
 
-\item{show_unique_values}{If TRUE (default), will show the number of unique values in the data after excluding values that are rarer than k\% (from 1-99\%). Else, will show the percent of the data dropped after excluding values that are rarer than k\% (from 1-99\%)}
+\item{percent_dropped}{If FALSE (default), will show the number of unique values in the data after excluding values that are rarer than k\% (from 1-99\%). Else, will show the percent of the data dropped after excluding values that are rarer than k\% (from 1-99\%)}
 }
 \value{
 A \code{ggplot2} graph
@@ -18,6 +18,6 @@ A \code{ggplot2} graph
 Makes a graph showing what either the number of unique values or the percent of values are dropped when excluding values that are less common than k\% of the data for every value of k from 1\%-100\%.
 }
 \examples{
-graph_group_rare_values(mtcars$mpg)
-graph_group_rare_values(mtcars$mpg, show_unique_values = FALSE)
+graph_group_rare_values(deidentify::initiations$offense_category)
+graph_group_rare_values(deidentify::initiations$offense_category, percent_dropped = FALSE)
 }
