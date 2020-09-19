@@ -15,7 +15,8 @@
 #'A Dataframe with encrypted columns ending with the prefix 'encrypt_id'
 #'@examples
 #'\dontrun{
-#'aes_key <- gen_aes_key(12)
+#'data("initiations")
+#'aes_key <- gen_aes_key(24)
 #'deidentify_text(initiations,"case_participant_id",aes_key)
 #'}
 #'@export
@@ -27,7 +28,7 @@ deidentify_text <- function(.data,cols_to_encrypt,key = NULL){
     stop("key must be a cyphr key")
   }
   # check that the column name actually exists in the data.
-  if(!all(names(.data) %in% cols_to_encrypt)){
+  if(!any(names(.data) %in% cols_to_encrypt)){
     stop("You have selected columns which are not in the data.")
   }
   if(!inherits(.data,"data.frame")){
