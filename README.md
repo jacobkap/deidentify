@@ -28,9 +28,8 @@ Basically, if someone meets a criteria that is rare in your data
 (e.g. combination of some columns such as a White female, who lives in
 X city, and is aged 16) then it could be easier to figure out who it is.
 The `deidentify_data()` function helps to de-identify data by
-aggregating values that are rare, encrypting strings (though the
-`seed_cipher()` function in the `caesar` package), and aggregating dates
-in larger groupings (e.g. months, years)
+aggregating values that are rare, encrypting strings, and aggregating
+dates in larger groupings (e.g. months, years).
 
 ## Installation
 

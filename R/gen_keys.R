@@ -8,7 +8,7 @@
 #' @importFrom openssl aes_keygen
 #'
 #' @examples
-#' \dontrun{gen_aes_key(16)}
+#' \dontrun{gen_aes_key(12)}
 #' @export
 gen_aes_key <- function(...) {
   cykey <- cyphr::key_openssl(key = aes_keygen(...))

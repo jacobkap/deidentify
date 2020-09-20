@@ -110,7 +110,7 @@ column name. Thus, a user will have to actively remove the unencrypted columns m
       <a href="../articles/deidentify_data.html">How to de-identify data</a>
     </li>
     <li>
-      <a href="../articles/k_score.html">Determining a K score for a dataset</a>
+      <a href="../articles/k_score.html">Determining a K-score for a dataset</a>
     </li>
     <li>
       <a href="../articles/theoretical-applications.html">Theoretical Applications</a>
@@ -182,7 +182,8 @@ column name. Thus, a user will have to actively remove the unencrypted columns m
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='kw'>aes_key</span> <span class='op'>&lt;-</span> <span class='fu'><a href='gen_aes_key.html'>gen_aes_key</a></span>(<span class='fl'>12</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"initiations"</span>)
+<span class='kw'>aes_key</span> <span class='op'>&lt;-</span> <span class='fu'><a href='gen_aes_key.html'>gen_aes_key</a></span>(<span class='fl'>24</span>)
 <span class='fu'>deidentify_text</span>(<span class='kw'>initiations</span>,<span class='st'>"case_participant_id"</span>,<span class='kw'>aes_key</span>)
 }
 </div></pre>

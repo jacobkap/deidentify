@@ -7,6 +7,8 @@
 deidentify_choices_table(
   data,
   group_rare_values_cols,
+  k_score_columns,
+  allow_column_combinations,
   preferred_k_score = NULL
 )
 }

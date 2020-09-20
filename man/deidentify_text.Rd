@@ -25,7 +25,8 @@ column name. Thus, a user will have to actively remove the unencrypted columns m
 }
 \examples{
 \dontrun{
-aes_key <- gen_aes_key(12)
+data("initiations")
+aes_key <- gen_aes_key(24)
 deidentify_text(initiations,"case_participant_id",aes_key)
 }
 }

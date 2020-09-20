@@ -106,7 +106,7 @@
       <a href="../articles/deidentify_data.html">How to de-identify data</a>
     </li>
     <li>
-      <a href="../articles/k_score.html">Determining a K score for a dataset</a>
+      <a href="../articles/k_score.html">Determining a K-score for a dataset</a>
     </li>
     <li>
       <a href="../articles/theoretical-applications.html">Theoretical Applications</a>
@@ -159,7 +159,7 @@
       <td><p>A vector of strings or numbers.</p></td>
     </tr>
     <tr>
-      <th>show_unique_values</th>
+      <th>percent_dropped</th>
       <td><p>If FALSE (default), will show the number of unique values in the data after excluding values that are rarer than k% (from 1-99%). Else, will show the percent of the data dropped after excluding values that are rarer than k% (from 1-99%)</p></td>
     </tr>
     </table>
@@ -169,9 +169,9 @@
     <p>A <code>ggplot2</code> graph</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>graph_group_rare_values</span>(<span class='kw'>mtcars</span><span class='op'>$</span><span class='kw'>mpg</span>)
-</div><div class='img'><img src='graph_group_rare_values-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>graph_group_rare_values</span>(<span class='kw'>mtcars</span><span class='op'>$</span><span class='kw'>mpg</span>, show_unique_values = <span class='fl'>FALSE</span>)
-</div><div class='output co'>#&gt; <span class='error'>Error in graph_group_rare_values(mtcars$mpg, show_unique_values = FALSE): unused argument (show_unique_values = FALSE)</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>graph_group_rare_values</span>(<span class='kw'>deidentify</span>::<span class='kw'><a href='initiations.html'>initiations</a></span><span class='op'>$</span><span class='kw'>offense_category</span>)
+</div><div class='img'><img src='graph_group_rare_values-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>graph_group_rare_values</span>(<span class='kw'>deidentify</span>::<span class='kw'><a href='initiations.html'>initiations</a></span><span class='op'>$</span><span class='kw'>offense_category</span>, percent_dropped = <span class='fl'>FALSE</span>)
+</div><div class='img'><img src='graph_group_rare_values-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

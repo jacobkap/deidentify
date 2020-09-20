@@ -13,6 +13,8 @@
 #' @examples
 deidentify_choices_table <- function(data,
                                      group_rare_values_cols,
+                                     k_score_columns,
+                                     allow_column_combinations,
                                      preferred_k_score = NULL) {
 
   col_types <- sapply(data, class)
@@ -35,6 +37,10 @@ deidentify_choices_table <- function(data,
                       "halfyear",
                       "year")
   }
+
+  column_combinations <- do.call("c",
+                                 lapply(seq_along(columns),
+                                        function(i) utils::combn(columns , i, FUN = list)))
 
   final <- data.frame()
   for (i in 1:length(combinations)) {

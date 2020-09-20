@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Determining a K score for a dataset • deidentify</title>
+<title>Determining a K-score for a dataset • deidentify</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -17,7 +17,7 @@
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Determining a K score for a dataset">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Determining a K-score for a dataset">
 <meta property="og:description" content="deidentify">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -64,7 +64,7 @@
       <a href="../articles/deidentify_data.html">How to de-identify data</a>
     </li>
     <li>
-      <a href="../articles/k_score.html">Determining a K score for a dataset</a>
+      <a href="../articles/k_score.html">Determining a K-score for a dataset</a>
     </li>
     <li>
       <a href="../articles/theoretical-applications.html">Theoretical Applications</a>
@@ -98,7 +98,7 @@
       </header><script src="k_score_files/header-attrs-2.3.2/header-attrs.js"></script><script src="k_score_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Determining a K score for a dataset</h1>
+      <h1 data-toc-skip>Determining a K-score for a dataset</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/jacobkap/deidentify/blob/master/vignettes/k_score.Rmd"><code>vignettes/k_score.Rmd</code></a></small>
@@ -110,6 +110,202 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://jacobkap.github.io/deidentify">deidentify</a></span>)
+</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="kw">deidentify</span>::<span class="kw"><a href="../reference/initiations.html">initiations</a></span>)
+<span class="co">#&gt;  [1] "case_id"                             </span>
+<span class="co">#&gt;  [2] "case_participant_id"                 </span>
+<span class="co">#&gt;  [3] "received_date"                       </span>
+<span class="co">#&gt;  [4] "offense_category"                    </span>
+<span class="co">#&gt;  [5] "primary_charge_flag"                 </span>
+<span class="co">#&gt;  [6] "charge_id"                           </span>
+<span class="co">#&gt;  [7] "charge_version_id"                   </span>
+<span class="co">#&gt;  [8] "charge_offense_title"                </span>
+<span class="co">#&gt;  [9] "charge_count"                        </span>
+<span class="co">#&gt; [10] "chapter"                             </span>
+<span class="co">#&gt; [11] "act"                                 </span>
+<span class="co">#&gt; [12] "section"                             </span>
+<span class="co">#&gt; [13] "class"                               </span>
+<span class="co">#&gt; [14] "aoic"                                </span>
+<span class="co">#&gt; [15] "event"                               </span>
+<span class="co">#&gt; [16] "event_date"                          </span>
+<span class="co">#&gt; [17] "finding_no_probable_cause"           </span>
+<span class="co">#&gt; [18] "arraignment_date"                    </span>
+<span class="co">#&gt; [19] "bond_date_initial"                   </span>
+<span class="co">#&gt; [20] "bond_date_current"                   </span>
+<span class="co">#&gt; [21] "bond_type_initial"                   </span>
+<span class="co">#&gt; [22] "bond_type_current"                   </span>
+<span class="co">#&gt; [23] "bond_amount_initial"                 </span>
+<span class="co">#&gt; [24] "bond_amount_current"                 </span>
+<span class="co">#&gt; [25] "bond_electronic_monitor_flag_initial"</span>
+<span class="co">#&gt; [26] "bond_electronic_monitor_flag_current"</span>
+<span class="co">#&gt; [27] "age_at_incident"                     </span>
+<span class="co">#&gt; [28] "race"                                </span>
+<span class="co">#&gt; [29] "gender"                              </span>
+<span class="co">#&gt; [30] "incident_city"                       </span>
+<span class="co">#&gt; [31] "incident_begin_date"                 </span>
+<span class="co">#&gt; [32] "incident_end_date"                   </span>
+<span class="co">#&gt; [33] "law_enforcement_agency"              </span>
+<span class="co">#&gt; [34] "law_enforcement_unit"                </span>
+<span class="co">#&gt; [35] "arrest_date"                         </span>
+<span class="co">#&gt; [36] "felony_review_date"                  </span>
+<span class="co">#&gt; [37] "felony_review_result"                </span>
+<span class="co">#&gt; [38] "updated_offense_category"</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">deidentify</span>::<span class="kw"><a href="../reference/initiations.html">initiations</a></span>))
+<span class="co">#&gt;        case_id case_participant_id received_date             offense_category</span>
+<span class="co">#&gt; 1 773232058636        512565032738    2016-01-27            Credit Card Cases</span>
+<span class="co">#&gt; 2 784453927394        524833143957    2017-06-15 UUW - Unlawful Use of Weapon</span>
+<span class="co">#&gt; 3 718200412833        455806284733    2011-12-21                Other Offense</span>
+<span class="co">#&gt; 4 787824305996        528496953356    2017-10-07                   Sex Crimes</span>
+<span class="co">#&gt; 5 801791055279        543196827744    2019-01-28           Aggravated Battery</span>
+<span class="co">#&gt; 6 796776781079        538078435902    2018-08-14 UUW - Unlawful Use of Weapon</span>
+<span class="co">#&gt;   primary_charge_flag    charge_id charge_version_id</span>
+<span class="co">#&gt; 1               FALSE 400511128519      458078354422</span>
+<span class="co">#&gt; 2               FALSE 412970779201      472619121554</span>
+<span class="co">#&gt; 3               FALSE 351586253842      401382841906</span>
+<span class="co">#&gt; 4                TRUE 415478118967      475566492675</span>
+<span class="co">#&gt; 5               FALSE 432243616209      495207783862</span>
+<span class="co">#&gt; 6               FALSE 425221684897      486969730193</span>
+<span class="co">#&gt;                                charge_offense_title charge_count chapter act</span>
+<span class="co">#&gt; 1                      CONTINUING FIN CRIME ENTRPRS            2     720   5</span>
+<span class="co">#&gt; 2 UNLAWFUL USE OR POSSESSION OF A WEAPON BY A FELON            2     720   5</span>
+<span class="co">#&gt; 3                     AGG RECKLESS DRVG/BODILY HARM            2     625   5</span>
+<span class="co">#&gt; 4                  AGGRAVATED CRIMINAL SEXUAL ABUSE            1     720   5</span>
+<span class="co">#&gt; 5                                AGGRAVATED BATTERY            5     720   5</span>
+<span class="co">#&gt; 6                 AGGRAVATED UNLAWFUL USE OF WEAPON           13     720   5</span>
+<span class="co">#&gt;         section class    aoic               event event_date</span>
+<span class="co">#&gt; 1    17-10.6(h)     1 0016193 Preliminary Hearing 2016-06-08</span>
+<span class="co">#&gt; 2     24-1.1(a)     3 1214500          Indictment 2017-07-14</span>
+<span class="co">#&gt; 3  11-503(a)(1)     4 0013565 Preliminary Hearing 2012-01-19</span>
+<span class="co">#&gt; 4    11-1.60(b)     2 0015825          Indictment 2017-11-01</span>
+<span class="co">#&gt; 5 12-3.05(d)(5)     3 0016109 Preliminary Hearing 2019-05-10</span>
+<span class="co">#&gt; 6  24-1.6(a)(1)     2 0012476          Indictment 2018-09-07</span>
+<span class="co">#&gt;   finding_no_probable_cause arraignment_date bond_date_initial</span>
+<span class="co">#&gt; 1                      &lt;NA&gt;             &lt;NA&gt;        2016-01-28</span>
+<span class="co">#&gt; 2                      &lt;NA&gt;       2017-07-28              &lt;NA&gt;</span>
+<span class="co">#&gt; 3                      &lt;NA&gt;       2012-02-17        2011-12-27</span>
+<span class="co">#&gt; 4                      &lt;NA&gt;       2017-11-07        2017-10-09</span>
+<span class="co">#&gt; 5                      &lt;NA&gt;       2019-06-05        2019-01-28</span>
+<span class="co">#&gt; 6                      &lt;NA&gt;       2018-09-25        2018-08-15</span>
+<span class="co">#&gt;   bond_date_current bond_type_initial bond_type_current bond_amount_initial</span>
+<span class="co">#&gt; 1        2016-01-28            D Bond            D Bond               20000</span>
+<span class="co">#&gt; 2              &lt;NA&gt;              &lt;NA&gt;              &lt;NA&gt;                  NA</span>
+<span class="co">#&gt; 3        2011-12-27            D Bond            D Bond               30000</span>
+<span class="co">#&gt; 4        2017-10-09            D Bond            D Bond               50000</span>
+<span class="co">#&gt; 5        2019-01-28            D Bond            D Bond               10000</span>
+<span class="co">#&gt; 6        2018-08-15           No Bond           No Bond                  NA</span>
+<span class="co">#&gt;   bond_amount_current bond_electronic_monitor_flag_initial</span>
+<span class="co">#&gt; 1               20000                                   NA</span>
+<span class="co">#&gt; 2                  NA                                   NA</span>
+<span class="co">#&gt; 3               30000                                   NA</span>
+<span class="co">#&gt; 4               50000                                   NA</span>
+<span class="co">#&gt; 5               10000                                   NA</span>
+<span class="co">#&gt; 6                  NA                                   NA</span>
+<span class="co">#&gt;   bond_electronic_monitor_flag_current age_at_incident</span>
+<span class="co">#&gt; 1                                   NA              21</span>
+<span class="co">#&gt; 2                                   NA              55</span>
+<span class="co">#&gt; 3                                   NA              18</span>
+<span class="co">#&gt; 4                                   NA              31</span>
+<span class="co">#&gt; 5                                   NA              26</span>
+<span class="co">#&gt; 6                                   NA              31</span>
+<span class="co">#&gt;                         race gender  incident_city incident_begin_date</span>
+<span class="co">#&gt; 1                      Black   Male       Matteson          2015-12-15</span>
+<span class="co">#&gt; 2                      White   Male        Chicago          2017-06-14</span>
+<span class="co">#&gt; 3                      White   Male Mount Prospect          2011-12-20</span>
+<span class="co">#&gt; 4 White [Hispanic Or Latino]   Male       Wheeling          2017-10-05</span>
+<span class="co">#&gt; 5                      White   Male        Chicago          2019-01-27</span>
+<span class="co">#&gt; 6                      White   Male Evergreen Park          2018-08-13</span>
+<span class="co">#&gt;   incident_end_date law_enforcement_agency law_enforcement_unit</span>
+<span class="co">#&gt; 1              &lt;NA&gt;         PARK FOREST PD                 &lt;NA&gt;</span>
+<span class="co">#&gt; 2              &lt;NA&gt;             CHICAGO PD District 9 - Deering</span>
+<span class="co">#&gt; 3              &lt;NA&gt;      MOUNT PROSPECT PD                 &lt;NA&gt;</span>
+<span class="co">#&gt; 4        2017-10-07            WHEELING PD                 &lt;NA&gt;</span>
+<span class="co">#&gt; 5              &lt;NA&gt;             CHICAGO PD                 &lt;NA&gt;</span>
+<span class="co">#&gt; 6              &lt;NA&gt;      EVERGREEN PARK PD                 &lt;NA&gt;</span>
+<span class="co">#&gt;           arrest_date felony_review_date felony_review_result</span>
+<span class="co">#&gt; 1 2016-01-25 14:45:00         2016-05-17             Approved</span>
+<span class="co">#&gt; 2 2017-06-15 10:17:00         2017-06-15             Approved</span>
+<span class="co">#&gt; 3 2011-12-20 02:36:00         2011-12-26             Approved</span>
+<span class="co">#&gt; 4 2017-10-06 17:46:00         2017-10-08             Approved</span>
+<span class="co">#&gt; 5 2019-01-27 21:12:00         2019-01-28             Approved</span>
+<span class="co">#&gt; 6 2018-08-14 16:00:00         2018-08-14             Approved</span>
+<span class="co">#&gt;       updated_offense_category</span>
+<span class="co">#&gt; 1         Residential Burglary</span>
+<span class="co">#&gt; 2 UUW - Unlawful Use of Weapon</span>
+<span class="co">#&gt; 3           Aggravated Battery</span>
+<span class="co">#&gt; 4                   Sex Crimes</span>
+<span class="co">#&gt; 5           Aggravated Battery</span>
+<span class="co">#&gt; 6 UUW - Unlawful Use of Weapon</span>
+</pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="kw">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_k_score.html">make_k_score</a></span>(<span class="kw">deidentify</span>::<span class="kw"><a href="../reference/initiations.html">initiations</a></span>, columns = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"race"</span>))
+<span class="co">#&gt; Note: There are 1 groups with 3 or fewer observations.</span>
+<span class="kw">temp</span>
+<span class="co">#&gt;                               race number_of_observations</span>
+<span class="co">#&gt; 1                          Unknown                      1</span>
+<span class="co">#&gt; 2                            Asian                      8</span>
+<span class="co">#&gt; 3                             &lt;NA&gt;                      9</span>
+<span class="co">#&gt; 4 White/Black [Hispanic Or Latino]                     21</span>
+<span class="co">#&gt; 5                            White                    120</span>
+<span class="co">#&gt; 6       White [Hispanic Or Latino]                    164</span>
+<span class="co">#&gt; 7                            Black                    677</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="kw">temp</span><span class="op">$</span><span class="kw">number_of_observations</span>)
+<span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span>
+<span class="co">#&gt;     1.0     8.5    21.0   142.9   142.0   677.0</span>
+</pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="kw">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_k_score.html">make_k_score</a></span>(<span class="kw">deidentify</span>::<span class="kw"><a href="../reference/initiations.html">initiations</a></span>, columns = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"race"</span>, <span class="st">"gender"</span>))
+<span class="co">#&gt; Note: There are 4 groups with 3 or fewer observations.</span>
+<span class="kw">temp</span>
+<span class="co">#&gt;                                race gender number_of_observations</span>
+<span class="co">#&gt; 1                           Unknown   Male                      1</span>
+<span class="co">#&gt; 2                             White   &lt;NA&gt;                      1</span>
+<span class="co">#&gt; 3                              &lt;NA&gt; Female                      1</span>
+<span class="co">#&gt; 4                             Asian Female                      2</span>
+<span class="co">#&gt; 5                             Asian   Male                      6</span>
+<span class="co">#&gt; 6                              &lt;NA&gt;   &lt;NA&gt;                      8</span>
+<span class="co">#&gt; 7        White [Hispanic Or Latino] Female                     10</span>
+<span class="co">#&gt; 8                             White Female                     17</span>
+<span class="co">#&gt; 9  White/Black [Hispanic Or Latino]   Male                     21</span>
+<span class="co">#&gt; 10                            Black Female                     62</span>
+<span class="co">#&gt; 11                            White   Male                    102</span>
+<span class="co">#&gt; 12       White [Hispanic Or Latino]   Male                    154</span>
+<span class="co">#&gt; 13                            Black   Male                    615</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="kw">temp</span><span class="op">$</span><span class="kw">number_of_observations</span>)
+<span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span>
+<span class="co">#&gt;    1.00    2.00   10.00   76.92   62.00  615.00</span>
+</pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="kw">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_k_score.html">make_k_score</a></span>(<span class="kw">deidentify</span>::<span class="kw"><a href="../reference/initiations.html">initiations</a></span>, columns = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"race"</span>, <span class="st">"gender"</span>, <span class="st">"offense_category"</span>))
+<span class="co">#&gt; Note: There are 115 groups with 3 or fewer observations.</span>
+<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">temp</span>)
+<span class="co">#&gt; [1] 168</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">temp</span>)
+<span class="co">#&gt;    race gender                          offense_category number_of_observations</span>
+<span class="co">#&gt; 1 Asian Female                             Other Offense                      1</span>
+<span class="co">#&gt; 2 Asian Female                                     Theft                      1</span>
+<span class="co">#&gt; 3 Asian   Male Driving With Suspended Or Revoked License                      1</span>
+<span class="co">#&gt; 4 Asian   Male                                     Fraud                      1</span>
+<span class="co">#&gt; 5 Asian   Male                                     Theft                      1</span>
+<span class="co">#&gt; 6 Asian   Male              UUW - Unlawful Use of Weapon                      1</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span>(<span class="kw">temp</span>)
+<span class="co">#&gt;                           race gender                          offense_category</span>
+<span class="co">#&gt; 163 White [Hispanic Or Latino]   Male              UUW - Unlawful Use of Weapon</span>
+<span class="co">#&gt; 164 White [Hispanic Or Latino]   Male                            Aggravated DUI</span>
+<span class="co">#&gt; 165                      Black   Male Driving With Suspended Or Revoked License</span>
+<span class="co">#&gt; 166                      Black   Male                                  Homicide</span>
+<span class="co">#&gt; 167                      Black   Male                                 Narcotics</span>
+<span class="co">#&gt; 168                      Black   Male              UUW - Unlawful Use of Weapon</span>
+<span class="co">#&gt;     number_of_observations</span>
+<span class="co">#&gt; 163                     24</span>
+<span class="co">#&gt; 164                     25</span>
+<span class="co">#&gt; 165                     26</span>
+<span class="co">#&gt; 166                     37</span>
+<span class="co">#&gt; 167                    129</span>
+<span class="co">#&gt; 168                    162</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="kw">temp</span><span class="op">$</span><span class="kw">number_of_observations</span>)
+<span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span>
+<span class="co">#&gt;   1.000   1.000   2.000   5.952   5.000 162.000</span>
 </pre></div>
   </div>
 

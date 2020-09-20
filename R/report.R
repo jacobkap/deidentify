@@ -14,7 +14,7 @@
 #' @export
 #'
 #' @examples
-make_deidentify_choices_reported <- function(data,
+make_deidentify_choices_report <- function(data,
                                              group_rare_values_cols,
                                              preferred_k_score = NULL,
                                              file_name) {

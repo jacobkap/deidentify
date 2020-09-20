@@ -61,6 +61,7 @@ make_k_score <- function(data,
   }
 
 
+
   data <-
     data %>%
     dplyr::group_by_at(dplyr::vars(dplyr::one_of(columns))) %>%
