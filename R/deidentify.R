@@ -19,8 +19,9 @@
 #' @param group_rare_values_text
 #' A string or vector of strings (one for each col in `group_rare_values_cols`)
 #' for what to rename the values that are determined to be rare enough (based on
-#' threshold set in `group_rare_values_limit` to rename (default is just
-#' calling them NA).
+#' threshold set in `group_rare_values_limit` to rename them. If NULL (default),
+#' and the vector is strings, replaces them with a string that concatenates all
+#' of the rare values together (separated by a comma). If NA, replaces them with NA.
 #' @param date_cols
 #' A vector of strings with the name of date columns that you want to be aggregated
 #' to the unit set in the `date_aggreagtion` parameter. If NULL, will use
@@ -49,8 +50,8 @@ deidentify_data <- function(data,
                                                  "year"),
                             cols_to_encrypt = NULL,
                             group_rare_values_cols = NULL,
-                            group_rare_values_limit = NULL,
-                            group_rare_values_text = NA,
+                            group_rare_values_limit = 5,
+                            group_rare_values_text = NULL,
                             quiet = FALSE) {
 
   # if (!is.null(cols_to_encrypt) & is.null(seeds_for_encryption)) {
@@ -71,13 +72,17 @@ deidentify_data <- function(data,
   if (!is.null(group_rare_values_cols)) {
     for (i in 1:length(group_rare_values_cols)) {
       col <- group_rare_values_cols[i]
-      values_under_k_percent <-
-        get_values_rarer_than_k_percent(data[, col],
-                                        group_rare_values_limit[i])
-      data[, col][data[, col] %in% values_under_k_percent] <- group_rare_values_text[i]
+      rare_values <- get_rare_values(data[, col], group_rare_values_limit[i])
+      if (is.null(group_rare_values_text)){
+        data[, col][data[, col] %in% rare_values] <- paste0(rare_values,
+                                                            collapse = ", ")
+      } else if (is.na(group_rare_values_text)) {
+        data[, col][data[, col] %in% rare_values] <- NA
+      } else {
+        data[, col][data[, col] %in% rare_values] <- group_rare_values_text[i]
+      }
     }
   }
-
 
   return(data)
 }
@@ -92,13 +97,13 @@ deidentify_group <- function(data,
                              group_rare_values_limit,
                              group_rare_values_text) {
   values_under_k_percent <-
-    get_values_rarer_than_k_percent(data,
-                                    group_rare_values_limit)
+    get_rare_values(data,
+                    group_rare_values_limit)
   data[data %in% values_under_k_percent] <- group_rare_values_text
 }
 
-get_values_rarer_than_k_percent <- function(data,
-                                            k_percent = 5) {
+get_rare_values <- function(data,
+                            k_percent = 5) {
 
   numeric_data <- is.numeric(data)
   values_by_percent <- table(data) / length(data[!is.na(data)]) * 100
@@ -106,7 +111,7 @@ get_values_rarer_than_k_percent <- function(data,
 
   if(numeric_data) {
     values_under_k_percent <- as.numeric(values_under_k_percent)
-    }
+  }
 
   # Sorts alphabetically (or smallest to largest if numeric) for easier testing.
   values_under_k_percent <- sort(values_under_k_percent)
@@ -115,4 +120,18 @@ get_values_rarer_than_k_percent <- function(data,
     values_under_k_percent <- NULL
   }
   return(values_under_k_percent)
+}
+
+
+bin_numbers <- function(data, percent_per_group) {
+  if (!is.numeric(percent_per_group) | length(percent_per_group) != 1 | !percent_per_group %in% 1:100) {
+    stop("percent_per_group must be a single integer from 1:100.")
+  }
+  if (!is.numeric(data)) {
+    stop("data must be a vector of numbers.")
+  }
+
+  # Convert to a proportion
+  percent_per_group <- percent_per_group / 100
+
 }

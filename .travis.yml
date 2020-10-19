@@ -5,3 +5,7 @@ cache: packages
 
 after_success:
     - Rscript -e 'covr::codecov()'
+
+before_install:
+  # Manually compile the libsodium library
+  - sudo apt-get install -y libsodium-dev

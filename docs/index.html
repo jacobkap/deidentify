@@ -116,15 +116,14 @@
 <div id="de-identify-private-data" class="section level1">
 <h1 class="hasAnchor">
 <a href="#de-identify-private-data" class="anchor"></a>De-identify private data</h1>
-<p>The goal of <code>deidentify</code> is to automate some of the work of de-identifying private data for releasing that data to the public. This involves determining how many people are in each unique group (the “case score”) which determines how easy it is to figure out who someone is. Basically, if someone meets a criteria that is rare in your data (e.g. combination of some columns such as a White female, who lives in X city, and is aged 16) then it could be easier to figure out who it is. The <code><a href="reference/deidentify_data.html">deidentify_data()</a></code> function helps to de-identify data by aggregating values that are rare, encrypting strings (though the <code>seed_cipher()</code> function in the <code>caesar</code> package), and aggregating dates in larger groupings (e.g. months, years)</p>
+<p>The goal of <code>deidentify</code> is to automate some of the work of de-identifying private data for releasing that data to the public. This involves determining how many people are in each unique group (the “case score”) which determines how easy it is to figure out who someone is. Basically, if someone meets a criteria that is rare in your data (e.g. combination of some columns such as a White female, who lives in X city, and is aged 16) then it could be easier to figure out who it is. The <code><a href="reference/deidentify_data.html">deidentify_data()</a></code> function helps to de-identify data by aggregating values that are rare, encrypting strings, and aggregating dates in larger groupings (e.g. months, years).</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>Currently, <code>deidentify</code> is only available on <a href="https://github.com/">GitHub</a>. To install the dev version then, you can use the following</p>
 <div class="sourceCode" id="cb1"><pre class="downlit">
 <span class="co"># install.packages("devtools")</span>
-<span class="kw">devtools</span>::<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"jacobkap/deidentify"</span>)
-</pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"jacobkap/deidentify"</span><span class="op">)</span></pre></div>
 </div>
 <div id="why-de-identify-data" class="section level2">
 <h2 class="hasAnchor">

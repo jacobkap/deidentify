@@ -109,10 +109,9 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://jacobkap.github.io/deidentify">deidentify</a></span>)
-</pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jacobkap.github.io/deidentify/">deidentify</a></span><span class="op">)</span></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="kw">deidentify</span>::<span class="kw"><a href="../reference/initiations.html">initiations</a></span>)
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="fu">deidentify</span><span class="fu">::</span><span class="va"><a href="../reference/initiations.html">initiations</a></span><span class="op">)</span>
 <span class="co">#&gt;  [1] "case_id"                             </span>
 <span class="co">#&gt;  [2] "case_participant_id"                 </span>
 <span class="co">#&gt;  [3] "received_date"                       </span>
@@ -151,7 +150,7 @@
 <span class="co">#&gt; [36] "felony_review_date"                  </span>
 <span class="co">#&gt; [37] "felony_review_result"                </span>
 <span class="co">#&gt; [38] "updated_offense_category"</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">deidentify</span>::<span class="kw"><a href="../reference/initiations.html">initiations</a></span>))
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu">deidentify</span><span class="fu">::</span><span class="va"><a href="../reference/initiations.html">initiations</a></span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;        case_id case_participant_id received_date             offense_category</span>
 <span class="co">#&gt; 1 773232058636        512565032738    2016-01-27            Credit Card Cases</span>
 <span class="co">#&gt; 2 784453927394        524833143957    2017-06-15 UUW - Unlawful Use of Weapon</span>
@@ -235,12 +234,11 @@
 <span class="co">#&gt; 3           Aggravated Battery</span>
 <span class="co">#&gt; 4                   Sex Crimes</span>
 <span class="co">#&gt; 5           Aggravated Battery</span>
-<span class="co">#&gt; 6 UUW - Unlawful Use of Weapon</span>
-</pre></div>
+<span class="co">#&gt; 6 UUW - Unlawful Use of Weapon</span></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="kw">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_k_score.html">make_k_score</a></span>(<span class="kw">deidentify</span>::<span class="kw"><a href="../reference/initiations.html">initiations</a></span>, columns = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"race"</span>))
+<span class="va">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_k_score.html">make_k_score</a></span><span class="op">(</span><span class="fu">deidentify</span><span class="fu">::</span><span class="va"><a href="../reference/initiations.html">initiations</a></span>, columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"race"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Note: There are 1 groups with 3 or fewer observations.</span>
-<span class="kw">temp</span>
+<span class="va">temp</span>
 <span class="co">#&gt;                               race number_of_observations</span>
 <span class="co">#&gt; 1                          Unknown                      1</span>
 <span class="co">#&gt; 2                            Asian                      8</span>
@@ -249,14 +247,13 @@
 <span class="co">#&gt; 5                            White                    120</span>
 <span class="co">#&gt; 6       White [Hispanic Or Latino]                    164</span>
 <span class="co">#&gt; 7                            Black                    677</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="kw">temp</span><span class="op">$</span><span class="kw">number_of_observations</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">temp</span><span class="op">$</span><span class="va">number_of_observations</span><span class="op">)</span>
 <span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span>
-<span class="co">#&gt;     1.0     8.5    21.0   142.9   142.0   677.0</span>
-</pre></div>
+<span class="co">#&gt;     1.0     8.5    21.0   142.9   142.0   677.0</span></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="kw">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_k_score.html">make_k_score</a></span>(<span class="kw">deidentify</span>::<span class="kw"><a href="../reference/initiations.html">initiations</a></span>, columns = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"race"</span>, <span class="st">"gender"</span>))
+<span class="va">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_k_score.html">make_k_score</a></span><span class="op">(</span><span class="fu">deidentify</span><span class="fu">::</span><span class="va"><a href="../reference/initiations.html">initiations</a></span>, columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"race"</span>, <span class="st">"gender"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Note: There are 4 groups with 3 or fewer observations.</span>
-<span class="kw">temp</span>
+<span class="va">temp</span>
 <span class="co">#&gt;                                race gender number_of_observations</span>
 <span class="co">#&gt; 1                           Unknown   Male                      1</span>
 <span class="co">#&gt; 2                             White   &lt;NA&gt;                      1</span>
@@ -271,16 +268,15 @@
 <span class="co">#&gt; 11                            White   Male                    102</span>
 <span class="co">#&gt; 12       White [Hispanic Or Latino]   Male                    154</span>
 <span class="co">#&gt; 13                            Black   Male                    615</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="kw">temp</span><span class="op">$</span><span class="kw">number_of_observations</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">temp</span><span class="op">$</span><span class="va">number_of_observations</span><span class="op">)</span>
 <span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span>
-<span class="co">#&gt;    1.00    2.00   10.00   76.92   62.00  615.00</span>
-</pre></div>
+<span class="co">#&gt;    1.00    2.00   10.00   76.92   62.00  615.00</span></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="kw">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_k_score.html">make_k_score</a></span>(<span class="kw">deidentify</span>::<span class="kw"><a href="../reference/initiations.html">initiations</a></span>, columns = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"race"</span>, <span class="st">"gender"</span>, <span class="st">"offense_category"</span>))
+<span class="va">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_k_score.html">make_k_score</a></span><span class="op">(</span><span class="fu">deidentify</span><span class="fu">::</span><span class="va"><a href="../reference/initiations.html">initiations</a></span>, columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"race"</span>, <span class="st">"gender"</span>, <span class="st">"offense_category"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Note: There are 115 groups with 3 or fewer observations.</span>
-<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">temp</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">temp</span><span class="op">)</span>
 <span class="co">#&gt; [1] 168</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">temp</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">temp</span><span class="op">)</span>
 <span class="co">#&gt;    race gender                          offense_category number_of_observations</span>
 <span class="co">#&gt; 1 Asian Female                             Other Offense                      1</span>
 <span class="co">#&gt; 2 Asian Female                                     Theft                      1</span>
@@ -288,7 +284,7 @@
 <span class="co">#&gt; 4 Asian   Male                                     Fraud                      1</span>
 <span class="co">#&gt; 5 Asian   Male                                     Theft                      1</span>
 <span class="co">#&gt; 6 Asian   Male              UUW - Unlawful Use of Weapon                      1</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span>(<span class="kw">temp</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">temp</span><span class="op">)</span>
 <span class="co">#&gt;                           race gender                          offense_category</span>
 <span class="co">#&gt; 163 White [Hispanic Or Latino]   Male              UUW - Unlawful Use of Weapon</span>
 <span class="co">#&gt; 164 White [Hispanic Or Latino]   Male                            Aggravated DUI</span>
@@ -303,10 +299,9 @@
 <span class="co">#&gt; 166                     37</span>
 <span class="co">#&gt; 167                    129</span>
 <span class="co">#&gt; 168                    162</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="kw">temp</span><span class="op">$</span><span class="kw">number_of_observations</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">temp</span><span class="op">$</span><span class="va">number_of_observations</span><span class="op">)</span>
 <span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span>
-<span class="co">#&gt;   1.000   1.000   2.000   5.952   5.000 162.000</span>
-</pre></div>
+<span class="co">#&gt;   1.000   1.000   2.000   5.952   5.000 162.000</span></pre></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

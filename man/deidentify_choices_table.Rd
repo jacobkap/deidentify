@@ -8,7 +8,6 @@ deidentify_choices_table(
   data,
   group_rare_values_cols,
   k_score_columns,
-  allow_column_combinations,
   preferred_k_score = NULL
 )
 }
@@ -19,6 +18,8 @@ deidentify_choices_table(
 rare values (below a certain percent of all values as set in
 \code{group_rare_values_limit}) into NA or a particular string (or NA) set in
 \code{group_rare_values_text}.}
+
+\item{k_score_columns}{A string or vector of strings for the names of columns to generate the k-score from.}
 
 \item{preferred_k_score}{A number of vector of numbers to set the minimum (and maximum if a vector) k-score you want from the possible choices.}
 }

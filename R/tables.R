@@ -3,6 +3,8 @@
 #' @inheritParams deidentify_data
 #' @param data
 #' @param group_rare_values_cols
+#' @param k_score_columns
+#' A string or vector of strings for the names of columns to generate the k-score from.
 #' @param preferred_k_score
 #' A number of vector of numbers to set the minimum (and maximum if a vector) k-score you want from the possible choices.
 #'
@@ -14,7 +16,6 @@
 deidentify_choices_table <- function(data,
                                      group_rare_values_cols,
                                      k_score_columns,
-                                     allow_column_combinations,
                                      preferred_k_score = NULL) {
 
   col_types <- sapply(data, class)
@@ -39,8 +40,8 @@ deidentify_choices_table <- function(data,
   }
 
   column_combinations <- do.call("c",
-                                 lapply(seq_along(columns),
-                                        function(i) utils::combn(columns , i, FUN = list)))
+                                 lapply(seq_along(combinations),
+                                        function(i) utils::combn(combinations, i, FUN = list)))
 
   final <- data.frame()
   for (i in 1:length(combinations)) {

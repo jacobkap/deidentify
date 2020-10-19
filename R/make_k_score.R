@@ -57,7 +57,7 @@ make_k_score <- function(data,
   if (any(!columns %in% names(data))) {
     missing_columns <- columns[!columns %in% names(data)]
     stop(paste0("The following columns are not in the inputted dataset: ",
-                missing_columns))
+                paste(missing_columns, collapse = " ")))
   }
 
 
@@ -69,9 +69,9 @@ make_k_score <- function(data,
   data <- dplyr::arrange(data, data$number_of_observations)
 
   if (!quiet) {
-    if (any(data$number_of_observations  < 3)) {
+    if (any(data$number_of_observations  < minimum_k_score)) {
       message(paste0("Note: There are ",
-                     sum(data$number_of_observations <= 3),
+                     sum(data$number_of_observations <= minimum_k_score),
                      " groups with ", minimum_k_score,
                      " or fewer observations."))
     }

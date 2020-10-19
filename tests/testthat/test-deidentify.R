@@ -1,17 +1,17 @@
 
 test_that("Identify rare values (less thank k% of the non-NA data) works", {
-  expect_equal(get_values_rarer_than_k_percent(mtcars$am), NULL)
+  expect_equal(get_rare_values(mtcars$am), NULL)
 
-  expect_equal(get_values_rarer_than_k_percent(c(1, 1, 3, 4), 50),  3:4)
-  expect_equal(get_values_rarer_than_k_percent(mtcars$carb, 5), c(6, 8))
-  expect_equal(get_values_rarer_than_k_percent(c("cat", "cat", "dog",
+  expect_equal(get_rare_values(c(1, 1, 3, 4), 50),  3:4)
+  expect_equal(get_rare_values(mtcars$carb, 5), c(6, 8))
+  expect_equal(get_rare_values(c("cat", "cat", "dog",
                                                  "cat", "puppy", "puppy"), 20),
                "dog")
-  expect_equal(get_values_rarer_than_k_percent(c("cat", "cat", "dog",
+  expect_equal(get_rare_values(c("cat", "cat", "dog",
                                                  "cat", "puppy", "puppy"), 35),
                c("dog", "puppy"))
-  expect_equal(get_values_rarer_than_k_percent(mtcars$disp, 3), NULL)
-  expect_equal(get_values_rarer_than_k_percent(mtcars$disp, 4),
+  expect_equal(get_rare_values(mtcars$disp, 3), NULL)
+  expect_equal(get_rare_values(mtcars$disp, 4),
                c(71.1, 75.7, 78.7, 79, 95.1, 108, 120.1, 120.3, 121,
                  140.8, 145, 146.7, 225, 258, 301, 304, 318, 350, 351,
                  400, 440, 460, 472))

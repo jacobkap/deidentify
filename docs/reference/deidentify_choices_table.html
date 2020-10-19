@@ -149,13 +149,12 @@
     <p>Make a data.frame showing either the outcome (k-score) of all possible de-identify choices or only those that meet a certain k-score threshold.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>deidentify_choices_table</span>(
-  <span class='kw'>data</span>,
-  <span class='kw'>group_rare_values_cols</span>,
-  <span class='kw'>k_score_columns</span>,
-  <span class='kw'>allow_column_combinations</span>,
-  preferred_k_score = <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>deidentify_choices_table</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  <span class='va'>group_rare_values_cols</span>,
+  <span class='va'>k_score_columns</span>,
+  preferred_k_score <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -170,6 +169,10 @@
 rare values (below a certain percent of all values as set in
 <code>group_rare_values_limit</code>) into NA or a particular string (or NA) set in
 <code>group_rare_values_text</code>.</p></td>
+    </tr>
+    <tr>
+      <th>k_score_columns</th>
+      <td><p>A string or vector of strings for the names of columns to generate the k-score from.</p></td>
     </tr>
     <tr>
       <th>preferred_k_score</th>

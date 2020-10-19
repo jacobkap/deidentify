@@ -149,7 +149,7 @@
     <p>This takes a vector of Dates and creates a barplot showing how many unique dates are in the data, at the original inputted unit and at every level of aggregation (week, month, bimonth, quarter, halfyear, year).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>graph_aggregate_dates</span>(<span class='kw'>data</span>)</pre>
+    <pre class="usage"><span class='fu'>graph_aggregate_dates</span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -165,7 +165,7 @@
     <p>A <code>ggplot2</code> graph</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>graph_aggregate_dates</span>(<span class='kw'>deidentify</span>::<span class='kw'><a href='initiations.html'>initiations</a></span><span class='op'>$</span><span class='kw'>received_date</span>)
+    <pre class="examples"><div class='input'><span class='fu'>graph_aggregate_dates</span><span class='op'>(</span><span class='fu'>deidentify</span><span class='fu'>::</span><span class='va'><a href='initiations.html'>initiations</a></span><span class='op'>$</span><span class='va'>received_date</span><span class='op'>)</span>
 </div><div class='img'><img src='graph_aggregate_dates-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

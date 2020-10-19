@@ -11,8 +11,8 @@ deidentify_data(
   date_aggregation = c("week", "month", "bimonth", "quarter", "halfyear", "year"),
   cols_to_encrypt = NULL,
   group_rare_values_cols = NULL,
-  group_rare_values_limit = NULL,
-  group_rare_values_text = NA,
+  group_rare_values_limit = 5,
+  group_rare_values_text = NULL,
   quiet = FALSE
 )
 }
@@ -41,8 +41,9 @@ is rare enough to change to NA (or the string set in \code{group_rare_values_tex
 
 \item{group_rare_values_text}{A string or vector of strings (one for each col in \code{group_rare_values_cols})
 for what to rename the values that are determined to be rare enough (based on
-threshold set in \code{group_rare_values_limit} to rename (default is just
-calling them NA).}
+threshold set in \code{group_rare_values_limit} to rename them. If NULL (default),
+and the vector is strings, replaces them with a string that concatenates all
+of the rare values together (separated by a comma). If NA, replaces them with NA.}
 
 \item{quiet}{A Boolean for whether you want to output a message that tells you which
 columns that you are encrypting and the seed set for each column to

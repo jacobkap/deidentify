@@ -12,7 +12,7 @@
 #'
 #' @examples
 #' graph_group_rare_values(deidentify::initiations$offense_category)
-#' graph_group_rare_values(deidentify::initiations$offense_category, percent_dropped = FALSE)
+#' graph_group_rare_values(deidentify::initiations$offense_category, percent_dropped = TRUE)
 graph_group_rare_values <- function(data, percent_dropped = FALSE) {
   y_label <- "# of Unique Values"
   y_var <- "number_of_unique_values"
@@ -27,14 +27,15 @@ graph_group_rare_values <- function(data, percent_dropped = FALSE) {
                            percent_dropped = NA)
 
   for (k_percent in 1:100) {
-    temp <- get_values_rarer_than_k_percent(data,
-                                            k_percent)
+    temp <- get_rare_values(data, k_percent)
     temp <- data[data %in% temp]
     temp <- length(temp)
     graph_data$percent_dropped[k_percent] <- percent_change(length_non_na,
                                                             length_non_na - temp)
     graph_data$number_of_unique_values[k_percent] <- length_non_na - temp
   }
+
+
   graph_data$percent_dropped <- graph_data$percent_dropped * -1
   ggplot2::ggplot(graph_data, ggplot2::aes_string(x = "k_percent",
                                                   y = y_var)) +

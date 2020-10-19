@@ -19,5 +19,5 @@ Makes a graph showing what either the number of unique values or the percent of 
 }
 \examples{
 graph_group_rare_values(deidentify::initiations$offense_category)
-graph_group_rare_values(deidentify::initiations$offense_category, percent_dropped = FALSE)
+graph_group_rare_values(deidentify::initiations$offense_category, percent_dropped = TRUE)
 }

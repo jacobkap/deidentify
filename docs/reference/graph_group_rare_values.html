@@ -149,7 +149,7 @@
     <p>Makes a graph showing what either the number of unique values or the percent of values are dropped when excluding values that are less common than k% of the data for every value of k from 1%-100%.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>graph_group_rare_values</span>(<span class='kw'>data</span>, percent_dropped = <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>graph_group_rare_values</span><span class='op'>(</span><span class='va'>data</span>, percent_dropped <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -169,8 +169,8 @@
     <p>A <code>ggplot2</code> graph</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>graph_group_rare_values</span>(<span class='kw'>deidentify</span>::<span class='kw'><a href='initiations.html'>initiations</a></span><span class='op'>$</span><span class='kw'>offense_category</span>)
-</div><div class='img'><img src='graph_group_rare_values-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>graph_group_rare_values</span>(<span class='kw'>deidentify</span>::<span class='kw'><a href='initiations.html'>initiations</a></span><span class='op'>$</span><span class='kw'>offense_category</span>, percent_dropped = <span class='fl'>FALSE</span>)
+    <pre class="examples"><div class='input'><span class='fu'>graph_group_rare_values</span><span class='op'>(</span><span class='fu'>deidentify</span><span class='fu'>::</span><span class='va'><a href='initiations.html'>initiations</a></span><span class='op'>$</span><span class='va'>offense_category</span><span class='op'>)</span>
+</div><div class='img'><img src='graph_group_rare_values-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>graph_group_rare_values</span><span class='op'>(</span><span class='fu'>deidentify</span><span class='fu'>::</span><span class='va'><a href='initiations.html'>initiations</a></span><span class='op'>$</span><span class='va'>offense_category</span>, percent_dropped <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='img'><img src='graph_group_rare_values-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
