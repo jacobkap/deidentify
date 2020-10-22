@@ -14,10 +14,7 @@ make_deidentify_choices_report(
 \arguments{
 \item{data}{A data.frame with the data you want to de-identify.}
 
-\item{group_rare_values_cols}{A string or vector of strings with the columns that you want to convert
-rare values (below a certain percent of all values as set in
-\code{group_rare_values_limit}) into NA or a particular string (or NA) set in
-\code{group_rare_values_text}.}
+\item{group_rare_values_cols}{A string or vector of strings with the columns that you want to turn rare values (below k\% where k is 1-99) into NA.}
 
 \item{preferred_k_score}{A number of vector of numbers to set the minimum (and maximum if a vector) k-score you want from the possible choices.}
 

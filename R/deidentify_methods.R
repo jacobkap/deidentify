@@ -63,3 +63,6 @@ deidentify_text <- function(.data,cols_to_encrypt,key = NULL){
   return(final_vec)
 }
 
+is_any_date_type <- function(x) {
+  return(lubridate::is.Date(x) | lubridate::is.POSIXct(x) | lubridate::is.POSIXlt(x))
+}

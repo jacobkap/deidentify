@@ -151,8 +151,9 @@
 
     <pre class="usage"><span class='fu'>deidentify_choices_table</span><span class='op'>(</span>
   <span class='va'>data</span>,
+  date_cols <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>group_rare_values_cols</span>,
-  <span class='va'>k_score_columns</span>,
+  k_score_columns <span class='op'>=</span> <span class='cn'>NULL</span>,
   preferred_k_score <span class='op'>=</span> <span class='cn'>NULL</span>
 <span class='op'>)</span></pre>
 
@@ -164,15 +165,18 @@
       <td><p>A data.frame with the data you want to de-identify.</p></td>
     </tr>
     <tr>
+      <th>date_cols</th>
+      <td><p>A vector of strings with the name of date columns that you want to be aggregated. If NULL, will use
+all date columns in the data.</p></td>
+    </tr>
+    <tr>
       <th>group_rare_values_cols</th>
-      <td><p>A string or vector of strings with the columns that you want to convert
-rare values (below a certain percent of all values as set in
-<code>group_rare_values_limit</code>) into NA or a particular string (or NA) set in
-<code>group_rare_values_text</code>.</p></td>
+      <td><p>A string or vector of strings with the columns that you want to turn rare values (below k% where k is 1-99) into NA.</p></td>
     </tr>
     <tr>
       <th>k_score_columns</th>
-      <td><p>A string or vector of strings for the names of columns to generate the k-score from.</p></td>
+      <td><p>A string or vector of strings for the names of columns to generate the k-score from. If NULL (default),
+will use the columns inputted in date_cols and group_rare_values_cols. Note that if you select columns for these parameters and don't include them in k_score_columns, deidentifying these columns won't affect the k-score.</p></td>
     </tr>
     <tr>
       <th>preferred_k_score</th>
@@ -184,6 +188,320 @@ rare values (below a certain percent of all values as set in
 
     <p>Returns a data.frame that only has all possible choices of decisions to make and the k-score that it returns. Each row is a possible decision when using the <code><a href='deidentify_data.html'>deidentify_data()</a></code> function and includes summary statistics for the k-score of that decision. If preferred_k_score is set, returns only choices that meet this parameter. If no choices meet this k-score minimum, will return an empty data.frame.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>deidentify_choices_table</span><span class='op'>(</span><span class='va'>mtcars</span>, group_rare_values_cols <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"mpg"</span>, <span class='st'>"vs"</span><span class='op'>)</span>,
+k_score_columns <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"mpg"</span>, <span class='st'>"vs"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    date_aggregation date_columns rare_values_limit rare_values_columns
+#&gt; 1              &lt;NA&gt;         &lt;NA&gt;                 1             mpg, vs
+#&gt; 2              &lt;NA&gt;         &lt;NA&gt;                 2             mpg, vs
+#&gt; 3              &lt;NA&gt;         &lt;NA&gt;                 3             mpg, vs
+#&gt; 4              &lt;NA&gt;         &lt;NA&gt;                 4             mpg, vs
+#&gt; 5              &lt;NA&gt;         &lt;NA&gt;                 5             mpg, vs
+#&gt; 6              &lt;NA&gt;         &lt;NA&gt;                 6             mpg, vs
+#&gt; 7              &lt;NA&gt;         &lt;NA&gt;                 7             mpg, vs
+#&gt; 8              &lt;NA&gt;         &lt;NA&gt;                 8             mpg, vs
+#&gt; 9              &lt;NA&gt;         &lt;NA&gt;                 9             mpg, vs
+#&gt; 10             &lt;NA&gt;         &lt;NA&gt;                10             mpg, vs
+#&gt; 11             &lt;NA&gt;         &lt;NA&gt;                11             mpg, vs
+#&gt; 12             &lt;NA&gt;         &lt;NA&gt;                12             mpg, vs
+#&gt; 13             &lt;NA&gt;         &lt;NA&gt;                13             mpg, vs
+#&gt; 14             &lt;NA&gt;         &lt;NA&gt;                14             mpg, vs
+#&gt; 15             &lt;NA&gt;         &lt;NA&gt;                15             mpg, vs
+#&gt; 16             &lt;NA&gt;         &lt;NA&gt;                16             mpg, vs
+#&gt; 17             &lt;NA&gt;         &lt;NA&gt;                17             mpg, vs
+#&gt; 18             &lt;NA&gt;         &lt;NA&gt;                18             mpg, vs
+#&gt; 19             &lt;NA&gt;         &lt;NA&gt;                19             mpg, vs
+#&gt; 20             &lt;NA&gt;         &lt;NA&gt;                20             mpg, vs
+#&gt; 21             &lt;NA&gt;         &lt;NA&gt;                21             mpg, vs
+#&gt; 22             &lt;NA&gt;         &lt;NA&gt;                22             mpg, vs
+#&gt; 23             &lt;NA&gt;         &lt;NA&gt;                23             mpg, vs
+#&gt; 24             &lt;NA&gt;         &lt;NA&gt;                24             mpg, vs
+#&gt; 25             &lt;NA&gt;         &lt;NA&gt;                25             mpg, vs
+#&gt; 26             &lt;NA&gt;         &lt;NA&gt;                26             mpg, vs
+#&gt; 27             &lt;NA&gt;         &lt;NA&gt;                27             mpg, vs
+#&gt; 28             &lt;NA&gt;         &lt;NA&gt;                28             mpg, vs
+#&gt; 29             &lt;NA&gt;         &lt;NA&gt;                29             mpg, vs
+#&gt; 30             &lt;NA&gt;         &lt;NA&gt;                30             mpg, vs
+#&gt; 31             &lt;NA&gt;         &lt;NA&gt;                31             mpg, vs
+#&gt; 32             &lt;NA&gt;         &lt;NA&gt;                32             mpg, vs
+#&gt; 33             &lt;NA&gt;         &lt;NA&gt;                33             mpg, vs
+#&gt; 34             &lt;NA&gt;         &lt;NA&gt;                34             mpg, vs
+#&gt; 35             &lt;NA&gt;         &lt;NA&gt;                35             mpg, vs
+#&gt; 36             &lt;NA&gt;         &lt;NA&gt;                36             mpg, vs
+#&gt; 37             &lt;NA&gt;         &lt;NA&gt;                37             mpg, vs
+#&gt; 38             &lt;NA&gt;         &lt;NA&gt;                38             mpg, vs
+#&gt; 39             &lt;NA&gt;         &lt;NA&gt;                39             mpg, vs
+#&gt; 40             &lt;NA&gt;         &lt;NA&gt;                40             mpg, vs
+#&gt; 41             &lt;NA&gt;         &lt;NA&gt;                41             mpg, vs
+#&gt; 42             &lt;NA&gt;         &lt;NA&gt;                42             mpg, vs
+#&gt; 43             &lt;NA&gt;         &lt;NA&gt;                43             mpg, vs
+#&gt; 44             &lt;NA&gt;         &lt;NA&gt;                44             mpg, vs
+#&gt; 45             &lt;NA&gt;         &lt;NA&gt;                45             mpg, vs
+#&gt; 46             &lt;NA&gt;         &lt;NA&gt;                46             mpg, vs
+#&gt; 47             &lt;NA&gt;         &lt;NA&gt;                47             mpg, vs
+#&gt; 48             &lt;NA&gt;         &lt;NA&gt;                48             mpg, vs
+#&gt; 49             &lt;NA&gt;         &lt;NA&gt;                49             mpg, vs
+#&gt; 50             &lt;NA&gt;         &lt;NA&gt;                50             mpg, vs
+#&gt; 51             &lt;NA&gt;         &lt;NA&gt;                51             mpg, vs
+#&gt; 52             &lt;NA&gt;         &lt;NA&gt;                52             mpg, vs
+#&gt; 53             &lt;NA&gt;         &lt;NA&gt;                53             mpg, vs
+#&gt; 54             &lt;NA&gt;         &lt;NA&gt;                54             mpg, vs
+#&gt; 55             &lt;NA&gt;         &lt;NA&gt;                55             mpg, vs
+#&gt; 56             &lt;NA&gt;         &lt;NA&gt;                56             mpg, vs
+#&gt; 57             &lt;NA&gt;         &lt;NA&gt;                57             mpg, vs
+#&gt; 58             &lt;NA&gt;         &lt;NA&gt;                58             mpg, vs
+#&gt; 59             &lt;NA&gt;         &lt;NA&gt;                59             mpg, vs
+#&gt; 60             &lt;NA&gt;         &lt;NA&gt;                60             mpg, vs
+#&gt; 61             &lt;NA&gt;         &lt;NA&gt;                61             mpg, vs
+#&gt; 62             &lt;NA&gt;         &lt;NA&gt;                62             mpg, vs
+#&gt; 63             &lt;NA&gt;         &lt;NA&gt;                63             mpg, vs
+#&gt; 64             &lt;NA&gt;         &lt;NA&gt;                64             mpg, vs
+#&gt; 65             &lt;NA&gt;         &lt;NA&gt;                65             mpg, vs
+#&gt; 66             &lt;NA&gt;         &lt;NA&gt;                66             mpg, vs
+#&gt; 67             &lt;NA&gt;         &lt;NA&gt;                67             mpg, vs
+#&gt; 68             &lt;NA&gt;         &lt;NA&gt;                68             mpg, vs
+#&gt; 69             &lt;NA&gt;         &lt;NA&gt;                69             mpg, vs
+#&gt; 70             &lt;NA&gt;         &lt;NA&gt;                70             mpg, vs
+#&gt; 71             &lt;NA&gt;         &lt;NA&gt;                71             mpg, vs
+#&gt; 72             &lt;NA&gt;         &lt;NA&gt;                72             mpg, vs
+#&gt; 73             &lt;NA&gt;         &lt;NA&gt;                73             mpg, vs
+#&gt; 74             &lt;NA&gt;         &lt;NA&gt;                74             mpg, vs
+#&gt; 75             &lt;NA&gt;         &lt;NA&gt;                75             mpg, vs
+#&gt; 76             &lt;NA&gt;         &lt;NA&gt;                76             mpg, vs
+#&gt; 77             &lt;NA&gt;         &lt;NA&gt;                77             mpg, vs
+#&gt; 78             &lt;NA&gt;         &lt;NA&gt;                78             mpg, vs
+#&gt; 79             &lt;NA&gt;         &lt;NA&gt;                79             mpg, vs
+#&gt; 80             &lt;NA&gt;         &lt;NA&gt;                80             mpg, vs
+#&gt; 81             &lt;NA&gt;         &lt;NA&gt;                81             mpg, vs
+#&gt; 82             &lt;NA&gt;         &lt;NA&gt;                82             mpg, vs
+#&gt; 83             &lt;NA&gt;         &lt;NA&gt;                83             mpg, vs
+#&gt; 84             &lt;NA&gt;         &lt;NA&gt;                84             mpg, vs
+#&gt; 85             &lt;NA&gt;         &lt;NA&gt;                85             mpg, vs
+#&gt; 86             &lt;NA&gt;         &lt;NA&gt;                86             mpg, vs
+#&gt; 87             &lt;NA&gt;         &lt;NA&gt;                87             mpg, vs
+#&gt; 88             &lt;NA&gt;         &lt;NA&gt;                88             mpg, vs
+#&gt; 89             &lt;NA&gt;         &lt;NA&gt;                89             mpg, vs
+#&gt; 90             &lt;NA&gt;         &lt;NA&gt;                90             mpg, vs
+#&gt; 91             &lt;NA&gt;         &lt;NA&gt;                91             mpg, vs
+#&gt; 92             &lt;NA&gt;         &lt;NA&gt;                92             mpg, vs
+#&gt; 93             &lt;NA&gt;         &lt;NA&gt;                93             mpg, vs
+#&gt; 94             &lt;NA&gt;         &lt;NA&gt;                94             mpg, vs
+#&gt; 95             &lt;NA&gt;         &lt;NA&gt;                95             mpg, vs
+#&gt; 96             &lt;NA&gt;         &lt;NA&gt;                96             mpg, vs
+#&gt; 97             &lt;NA&gt;         &lt;NA&gt;                97             mpg, vs
+#&gt; 98             &lt;NA&gt;         &lt;NA&gt;                98             mpg, vs
+#&gt; 99             &lt;NA&gt;         &lt;NA&gt;                99             mpg, vs
+#&gt;    k_score_columns min_k_score mean_k_score median_k_score max_k_score
+#&gt; 1          mpg, vs           1     1.230769              1           2
+#&gt; 2          mpg, vs           1     1.230769              1           2
+#&gt; 3          mpg, vs           1     1.230769              1           2
+#&gt; 4          mpg, vs           1     3.200000              2          11
+#&gt; 5          mpg, vs           1     3.200000              2          11
+#&gt; 6          mpg, vs           1     3.200000              2          11
+#&gt; 7          mpg, vs          14    16.000000             16          18
+#&gt; 8          mpg, vs          14    16.000000             16          18
+#&gt; 9          mpg, vs          14    16.000000             16          18
+#&gt; 10         mpg, vs          14    16.000000             16          18
+#&gt; 11         mpg, vs          14    16.000000             16          18
+#&gt; 12         mpg, vs          14    16.000000             16          18
+#&gt; 13         mpg, vs          14    16.000000             16          18
+#&gt; 14         mpg, vs          14    16.000000             16          18
+#&gt; 15         mpg, vs          14    16.000000             16          18
+#&gt; 16         mpg, vs          14    16.000000             16          18
+#&gt; 17         mpg, vs          14    16.000000             16          18
+#&gt; 18         mpg, vs          14    16.000000             16          18
+#&gt; 19         mpg, vs          14    16.000000             16          18
+#&gt; 20         mpg, vs          14    16.000000             16          18
+#&gt; 21         mpg, vs          14    16.000000             16          18
+#&gt; 22         mpg, vs          14    16.000000             16          18
+#&gt; 23         mpg, vs          14    16.000000             16          18
+#&gt; 24         mpg, vs          14    16.000000             16          18
+#&gt; 25         mpg, vs          14    16.000000             16          18
+#&gt; 26         mpg, vs          14    16.000000             16          18
+#&gt; 27         mpg, vs          14    16.000000             16          18
+#&gt; 28         mpg, vs          14    16.000000             16          18
+#&gt; 29         mpg, vs          14    16.000000             16          18
+#&gt; 30         mpg, vs          14    16.000000             16          18
+#&gt; 31         mpg, vs          14    16.000000             16          18
+#&gt; 32         mpg, vs          14    16.000000             16          18
+#&gt; 33         mpg, vs          14    16.000000             16          18
+#&gt; 34         mpg, vs          14    16.000000             16          18
+#&gt; 35         mpg, vs          14    16.000000             16          18
+#&gt; 36         mpg, vs          14    16.000000             16          18
+#&gt; 37         mpg, vs          14    16.000000             16          18
+#&gt; 38         mpg, vs          14    16.000000             16          18
+#&gt; 39         mpg, vs          14    16.000000             16          18
+#&gt; 40         mpg, vs          14    16.000000             16          18
+#&gt; 41         mpg, vs          14    16.000000             16          18
+#&gt; 42         mpg, vs          14    16.000000             16          18
+#&gt; 43         mpg, vs          14    16.000000             16          18
+#&gt; 44         mpg, vs          14    16.000000             16          18
+#&gt; 45         mpg, vs          14    16.000000             16          18
+#&gt; 46         mpg, vs          14    16.000000             16          18
+#&gt; 47         mpg, vs          14    16.000000             16          18
+#&gt; 48         mpg, vs          14    16.000000             16          18
+#&gt; 49         mpg, vs          14    16.000000             16          18
+#&gt; 50         mpg, vs          14    16.000000             16          18
+#&gt; 51         mpg, vs          14    16.000000             16          18
+#&gt; 52         mpg, vs          14    16.000000             16          18
+#&gt; 53         mpg, vs          14    16.000000             16          18
+#&gt; 54         mpg, vs          14    16.000000             16          18
+#&gt; 55         mpg, vs          14    16.000000             16          18
+#&gt; 56         mpg, vs          14    16.000000             16          18
+#&gt; 57         mpg, vs          32    32.000000             32          32
+#&gt; 58         mpg, vs          32    32.000000             32          32
+#&gt; 59         mpg, vs          32    32.000000             32          32
+#&gt; 60         mpg, vs          32    32.000000             32          32
+#&gt; 61         mpg, vs          32    32.000000             32          32
+#&gt; 62         mpg, vs          32    32.000000             32          32
+#&gt; 63         mpg, vs          32    32.000000             32          32
+#&gt; 64         mpg, vs          32    32.000000             32          32
+#&gt; 65         mpg, vs          32    32.000000             32          32
+#&gt; 66         mpg, vs          32    32.000000             32          32
+#&gt; 67         mpg, vs          32    32.000000             32          32
+#&gt; 68         mpg, vs          32    32.000000             32          32
+#&gt; 69         mpg, vs          32    32.000000             32          32
+#&gt; 70         mpg, vs          32    32.000000             32          32
+#&gt; 71         mpg, vs          32    32.000000             32          32
+#&gt; 72         mpg, vs          32    32.000000             32          32
+#&gt; 73         mpg, vs          32    32.000000             32          32
+#&gt; 74         mpg, vs          32    32.000000             32          32
+#&gt; 75         mpg, vs          32    32.000000             32          32
+#&gt; 76         mpg, vs          32    32.000000             32          32
+#&gt; 77         mpg, vs          32    32.000000             32          32
+#&gt; 78         mpg, vs          32    32.000000             32          32
+#&gt; 79         mpg, vs          32    32.000000             32          32
+#&gt; 80         mpg, vs          32    32.000000             32          32
+#&gt; 81         mpg, vs          32    32.000000             32          32
+#&gt; 82         mpg, vs          32    32.000000             32          32
+#&gt; 83         mpg, vs          32    32.000000             32          32
+#&gt; 84         mpg, vs          32    32.000000             32          32
+#&gt; 85         mpg, vs          32    32.000000             32          32
+#&gt; 86         mpg, vs          32    32.000000             32          32
+#&gt; 87         mpg, vs          32    32.000000             32          32
+#&gt; 88         mpg, vs          32    32.000000             32          32
+#&gt; 89         mpg, vs          32    32.000000             32          32
+#&gt; 90         mpg, vs          32    32.000000             32          32
+#&gt; 91         mpg, vs          32    32.000000             32          32
+#&gt; 92         mpg, vs          32    32.000000             32          32
+#&gt; 93         mpg, vs          32    32.000000             32          32
+#&gt; 94         mpg, vs          32    32.000000             32          32
+#&gt; 95         mpg, vs          32    32.000000             32          32
+#&gt; 96         mpg, vs          32    32.000000             32          32
+#&gt; 97         mpg, vs          32    32.000000             32          32
+#&gt; 98         mpg, vs          32    32.000000             32          32
+#&gt; 99         mpg, vs          32    32.000000             32          32</div><div class='input'>
+<span class='fu'>deidentify_choices_table</span><span class='op'>(</span><span class='va'>mtcars</span>, group_rare_values_cols <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"mpg"</span>, <span class='st'>"vs"</span><span class='op'>)</span>, preferred_k_score <span class='op'>=</span> <span class='fl'>5</span><span class='op'>:</span><span class='fl'>15</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    date_aggregation date_columns rare_values_limit rare_values_columns
+#&gt; 1              &lt;NA&gt;         &lt;NA&gt;                 7             mpg, vs
+#&gt; 2              &lt;NA&gt;         &lt;NA&gt;                 8             mpg, vs
+#&gt; 3              &lt;NA&gt;         &lt;NA&gt;                 9             mpg, vs
+#&gt; 4              &lt;NA&gt;         &lt;NA&gt;                10             mpg, vs
+#&gt; 5              &lt;NA&gt;         &lt;NA&gt;                11             mpg, vs
+#&gt; 6              &lt;NA&gt;         &lt;NA&gt;                12             mpg, vs
+#&gt; 7              &lt;NA&gt;         &lt;NA&gt;                13             mpg, vs
+#&gt; 8              &lt;NA&gt;         &lt;NA&gt;                14             mpg, vs
+#&gt; 9              &lt;NA&gt;         &lt;NA&gt;                15             mpg, vs
+#&gt; 10             &lt;NA&gt;         &lt;NA&gt;                16             mpg, vs
+#&gt; 11             &lt;NA&gt;         &lt;NA&gt;                17             mpg, vs
+#&gt; 12             &lt;NA&gt;         &lt;NA&gt;                18             mpg, vs
+#&gt; 13             &lt;NA&gt;         &lt;NA&gt;                19             mpg, vs
+#&gt; 14             &lt;NA&gt;         &lt;NA&gt;                20             mpg, vs
+#&gt; 15             &lt;NA&gt;         &lt;NA&gt;                21             mpg, vs
+#&gt; 16             &lt;NA&gt;         &lt;NA&gt;                22             mpg, vs
+#&gt; 17             &lt;NA&gt;         &lt;NA&gt;                23             mpg, vs
+#&gt; 18             &lt;NA&gt;         &lt;NA&gt;                24             mpg, vs
+#&gt; 19             &lt;NA&gt;         &lt;NA&gt;                25             mpg, vs
+#&gt; 20             &lt;NA&gt;         &lt;NA&gt;                26             mpg, vs
+#&gt; 21             &lt;NA&gt;         &lt;NA&gt;                27             mpg, vs
+#&gt; 22             &lt;NA&gt;         &lt;NA&gt;                28             mpg, vs
+#&gt; 23             &lt;NA&gt;         &lt;NA&gt;                29             mpg, vs
+#&gt; 24             &lt;NA&gt;         &lt;NA&gt;                30             mpg, vs
+#&gt; 25             &lt;NA&gt;         &lt;NA&gt;                31             mpg, vs
+#&gt; 26             &lt;NA&gt;         &lt;NA&gt;                32             mpg, vs
+#&gt; 27             &lt;NA&gt;         &lt;NA&gt;                33             mpg, vs
+#&gt; 28             &lt;NA&gt;         &lt;NA&gt;                34             mpg, vs
+#&gt; 29             &lt;NA&gt;         &lt;NA&gt;                35             mpg, vs
+#&gt; 30             &lt;NA&gt;         &lt;NA&gt;                36             mpg, vs
+#&gt; 31             &lt;NA&gt;         &lt;NA&gt;                37             mpg, vs
+#&gt; 32             &lt;NA&gt;         &lt;NA&gt;                38             mpg, vs
+#&gt; 33             &lt;NA&gt;         &lt;NA&gt;                39             mpg, vs
+#&gt; 34             &lt;NA&gt;         &lt;NA&gt;                40             mpg, vs
+#&gt; 35             &lt;NA&gt;         &lt;NA&gt;                41             mpg, vs
+#&gt; 36             &lt;NA&gt;         &lt;NA&gt;                42             mpg, vs
+#&gt; 37             &lt;NA&gt;         &lt;NA&gt;                43             mpg, vs
+#&gt; 38             &lt;NA&gt;         &lt;NA&gt;                44             mpg, vs
+#&gt; 39             &lt;NA&gt;         &lt;NA&gt;                45             mpg, vs
+#&gt; 40             &lt;NA&gt;         &lt;NA&gt;                46             mpg, vs
+#&gt; 41             &lt;NA&gt;         &lt;NA&gt;                47             mpg, vs
+#&gt; 42             &lt;NA&gt;         &lt;NA&gt;                48             mpg, vs
+#&gt; 43             &lt;NA&gt;         &lt;NA&gt;                49             mpg, vs
+#&gt; 44             &lt;NA&gt;         &lt;NA&gt;                50             mpg, vs
+#&gt; 45             &lt;NA&gt;         &lt;NA&gt;                51             mpg, vs
+#&gt; 46             &lt;NA&gt;         &lt;NA&gt;                52             mpg, vs
+#&gt; 47             &lt;NA&gt;         &lt;NA&gt;                53             mpg, vs
+#&gt; 48             &lt;NA&gt;         &lt;NA&gt;                54             mpg, vs
+#&gt; 49             &lt;NA&gt;         &lt;NA&gt;                55             mpg, vs
+#&gt; 50             &lt;NA&gt;         &lt;NA&gt;                56             mpg, vs
+#&gt;    k_score_columns min_k_score mean_k_score median_k_score max_k_score
+#&gt; 1          mpg, vs          14           16             16          18
+#&gt; 2          mpg, vs          14           16             16          18
+#&gt; 3          mpg, vs          14           16             16          18
+#&gt; 4          mpg, vs          14           16             16          18
+#&gt; 5          mpg, vs          14           16             16          18
+#&gt; 6          mpg, vs          14           16             16          18
+#&gt; 7          mpg, vs          14           16             16          18
+#&gt; 8          mpg, vs          14           16             16          18
+#&gt; 9          mpg, vs          14           16             16          18
+#&gt; 10         mpg, vs          14           16             16          18
+#&gt; 11         mpg, vs          14           16             16          18
+#&gt; 12         mpg, vs          14           16             16          18
+#&gt; 13         mpg, vs          14           16             16          18
+#&gt; 14         mpg, vs          14           16             16          18
+#&gt; 15         mpg, vs          14           16             16          18
+#&gt; 16         mpg, vs          14           16             16          18
+#&gt; 17         mpg, vs          14           16             16          18
+#&gt; 18         mpg, vs          14           16             16          18
+#&gt; 19         mpg, vs          14           16             16          18
+#&gt; 20         mpg, vs          14           16             16          18
+#&gt; 21         mpg, vs          14           16             16          18
+#&gt; 22         mpg, vs          14           16             16          18
+#&gt; 23         mpg, vs          14           16             16          18
+#&gt; 24         mpg, vs          14           16             16          18
+#&gt; 25         mpg, vs          14           16             16          18
+#&gt; 26         mpg, vs          14           16             16          18
+#&gt; 27         mpg, vs          14           16             16          18
+#&gt; 28         mpg, vs          14           16             16          18
+#&gt; 29         mpg, vs          14           16             16          18
+#&gt; 30         mpg, vs          14           16             16          18
+#&gt; 31         mpg, vs          14           16             16          18
+#&gt; 32         mpg, vs          14           16             16          18
+#&gt; 33         mpg, vs          14           16             16          18
+#&gt; 34         mpg, vs          14           16             16          18
+#&gt; 35         mpg, vs          14           16             16          18
+#&gt; 36         mpg, vs          14           16             16          18
+#&gt; 37         mpg, vs          14           16             16          18
+#&gt; 38         mpg, vs          14           16             16          18
+#&gt; 39         mpg, vs          14           16             16          18
+#&gt; 40         mpg, vs          14           16             16          18
+#&gt; 41         mpg, vs          14           16             16          18
+#&gt; 42         mpg, vs          14           16             16          18
+#&gt; 43         mpg, vs          14           16             16          18
+#&gt; 44         mpg, vs          14           16             16          18
+#&gt; 45         mpg, vs          14           16             16          18
+#&gt; 46         mpg, vs          14           16             16          18
+#&gt; 47         mpg, vs          14           16             16          18
+#&gt; 48         mpg, vs          14           16             16          18
+#&gt; 49         mpg, vs          14           16             16          18
+#&gt; 50         mpg, vs          14           16             16          18</div><div class='input'>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'>deidentify_choices_table</span><span class='op'>(</span><span class='fu'>deidentify</span><span class='fu'>::</span><span class='va'><a href='initiations.html'>initiations</a></span>,
+date_cols <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"arrest_date"</span>, <span class='st'>"felony_review_date"</span><span class='op'>)</span>,
+group_rare_values_cols <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"race"</span>, <span class='st'>"primary_charge_flag"</span><span class='op'>)</span>,
+k_score_columns <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"primary_charge_flag"</span>, <span class='st'>"gender"</span>, <span class='st'>"race"</span>,
+ <span class='st'>"arrest_date"</span>, <span class='st'>"felony_review_date"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

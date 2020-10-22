@@ -6,20 +6,22 @@
 \usage{
 deidentify_choices_table(
   data,
+  date_cols = NULL,
   group_rare_values_cols,
-  k_score_columns,
+  k_score_columns = NULL,
   preferred_k_score = NULL
 )
 }
 \arguments{
 \item{data}{A data.frame with the data you want to de-identify.}
 
-\item{group_rare_values_cols}{A string or vector of strings with the columns that you want to convert
-rare values (below a certain percent of all values as set in
-\code{group_rare_values_limit}) into NA or a particular string (or NA) set in
-\code{group_rare_values_text}.}
+\item{date_cols}{A vector of strings with the name of date columns that you want to be aggregated. If NULL, will use
+all date columns in the data.}
 
-\item{k_score_columns}{A string or vector of strings for the names of columns to generate the k-score from.}
+\item{group_rare_values_cols}{A string or vector of strings with the columns that you want to turn rare values (below k\% where k is 1-99) into NA.}
+
+\item{k_score_columns}{A string or vector of strings for the names of columns to generate the k-score from. If NULL (default),
+will use the columns inputted in date_cols and group_rare_values_cols. Note that if you select columns for these parameters and don't include them in k_score_columns, deidentifying these columns won't affect the k-score.}
 
 \item{preferred_k_score}{A number of vector of numbers to set the minimum (and maximum if a vector) k-score you want from the possible choices.}
 }
@@ -28,4 +30,18 @@ Returns a data.frame that only has all possible choices of decisions to make and
 }
 \description{
 Make a data.frame showing either the outcome (k-score) of all possible de-identify choices or only those that meet a certain k-score threshold.
+}
+\examples{
+deidentify_choices_table(mtcars, group_rare_values_cols = c("mpg", "vs"),
+k_score_columns = c("mpg", "vs"))
+
+deidentify_choices_table(mtcars, group_rare_values_cols = c("mpg", "vs"), preferred_k_score = 5:15)
+
+\dontrun{
+deidentify_choices_table(deidentify::initiations,
+date_cols = c("arrest_date", "felony_review_date"),
+group_rare_values_cols = c("race", "primary_charge_flag"),
+k_score_columns = c("primary_charge_flag", "gender", "race",
+ "arrest_date", "felony_review_date"))
+}
 }

@@ -9,7 +9,17 @@ inits_data <- inits_data %>%
   mutate(across(ends_with("date")|starts_with("bond_date"),~mdy_hms(.)),
         across(contains("flag"),~case_when(. == "true"~TRUE,
                                             . == "false"~FALSE)),
-        across(contains("bond_amount")|starts_with("age_at")|contains("charge_count"),~parse_number(.))) %>%
+        across(contains("bond_amount")|starts_with("age_at")|contains("charge_count"), ~parse_number(.)),
+        # incident_begin_date = ymd(incident_begin_date),
+        # incident_end_date   = mdy_hms(incident_end_date),
+        # arrest_date         = mdy_hms(arrest_date),
+        # felony_review_date  = mdy_hms(felony_review_date),
+        # received_date       = mdy_hms(received_date),
+        # event_date          = mdy_hms(event_date),
+        # arraignment_date    = mdy_hms(arraignment_date),
+        # bond_date_initial   = mdy_hms(bond_date_initial),
+        # bond_date_current   = mdy_hms(bond_date_current)
+        ) %>%
   # correct a misspelling on the bond flag
   rename("bond_electronic_monitor_flag_current" = bond_electroinic_monitor_flag_current )
 

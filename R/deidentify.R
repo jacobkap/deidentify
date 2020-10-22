@@ -4,9 +4,16 @@
 #'
 #' @param data
 #' A data.frame with the data you want to de-identify.
+#' @param date_cols
+#' A vector of strings with the name of date columns that you want to be aggregated
+#' to the unit set in the `date_aggregation` parameter. If NULL, will use
+#' all date columns in the data.
+#' @param date_aggregation
+#' A string with the time unit to aggregate all Date variables to.
+#' Can take one of the following: 'week', 'month', 'bimonth', 'quarter',
+#'  'halfyear', 'year'.
 #' @param cols_to_encrypt
-#' A string or vector of strings with the columns that you want to encrypt
-#' using the `seed_cipher()` function from the `caesar` package.
+#' A string or vector of strings with the columns that you want to encrypt.
 #' @param group_rare_values_cols
 #' A string or vector of strings with the columns that you want to convert
 #' rare values (below a certain percent of all values as set in
@@ -22,14 +29,6 @@
 #' threshold set in `group_rare_values_limit` to rename them. If NULL (default),
 #' and the vector is strings, replaces them with a string that concatenates all
 #' of the rare values together (separated by a comma). If NA, replaces them with NA.
-#' @param date_cols
-#' A vector of strings with the name of date columns that you want to be aggregated
-#' to the unit set in the `date_aggreagtion` parameter. If NULL, will use
-#' all date columns in the data.
-#' @param date_aggregation
-#' A string with the time unit to aggregate all Date variables to.
-#' Can take one of the following: 'week', 'month', 'bimonth', 'quarter',
-#'  'halfyear', 'year'.
 #' @param quiet
 #' A Boolean for whether you want to output a message that tells you which
 #' columns that you are encrypting and the seed set for each column to
@@ -54,13 +53,14 @@ deidentify_data <- function(data,
                             group_rare_values_text = NULL,
                             quiet = FALSE) {
 
-  # if (!is.null(cols_to_encrypt) & is.null(seeds_for_encryption)) {
-  #   seeds_for_encryption <- sample(1e3:1e11, length(cols_to_encrypt))
-  # }
+  col_types <- sapply(data, is_any_date_type)
+  if (is.null(date_cols)) {
+    date_cols <- names(col_types)[col_types]
+  }
 
   data <-
     data %>%
-    dplyr::mutate_if(lubridate::is.Date, lubridate::floor_date, unit = date_aggregation)
+    dplyr::mutate_at(date_cols, deidentify_date, date_aggregation)
 
 
   # Looks in each selected columns and replaces all the values that are less
@@ -89,7 +89,6 @@ deidentify_data <- function(data,
 
 deidentify_date <- function(data, date_aggregation) {
   data <- lubridate::floor_date(data, date_aggregation)
-
   return(data)
 }
 

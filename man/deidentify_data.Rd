@@ -20,15 +20,14 @@ deidentify_data(
 \item{data}{A data.frame with the data you want to de-identify.}
 
 \item{date_cols}{A vector of strings with the name of date columns that you want to be aggregated
-to the unit set in the \code{date_aggreagtion} parameter. If NULL, will use
+to the unit set in the \code{date_aggregation} parameter. If NULL, will use
 all date columns in the data.}
 
 \item{date_aggregation}{A string with the time unit to aggregate all Date variables to.
 Can take one of the following: 'week', 'month', 'bimonth', 'quarter',
 'halfyear', 'year'.}
 
-\item{cols_to_encrypt}{A string or vector of strings with the columns that you want to encrypt
-using the \code{seed_cipher()} function from the \code{caesar} package.}
+\item{cols_to_encrypt}{A string or vector of strings with the columns that you want to encrypt.}
 
 \item{group_rare_values_cols}{A string or vector of strings with the columns that you want to convert
 rare values (below a certain percent of all values as set in
