@@ -4,17 +4,19 @@
 \alias{deidentify_text}
 \title{methods to deidentify different forms of data}
 \usage{
-deidentify_text(.data, cols_to_encrypt, key = NULL)
+deidentify_text(.data, key, cols_to_encrypt = NULL)
 }
 \arguments{
 \item{.data}{a data frame}
 
-\item{cols_to_encrypt}{A character vector with the names associated with the columns to encrypt}
-
 \item{key}{A cyphr key generated from the cyphr package}
+
+\item{cols_to_encrypt}{This is specific to data.frames. This should be a character vector specifying
+the names of the desired columns to encrypt.}
 }
 \value{
-A Dataframe with encrypted columns ending with the prefix 'encrypt_id'
+depending on the input, an object of the same class. If you input
+a data.frame, you will get a data.frame with columns with a enc suffix
 }
 \description{
 The deidentify_text method offers a flexible approach to encryption offering the user the option to encrypt text
@@ -27,6 +29,6 @@ column name. Thus, a user will have to actively remove the unencrypted columns m
 \dontrun{
 data("initiations")
 aes_key <- gen_aes_key(24)
-deidentify_text(initiations,"case_participant_id",aes_key)
+deidentify_text(initiations, "case_participant_id", aes_key)
 }
 }
