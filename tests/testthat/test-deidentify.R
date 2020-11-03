@@ -5,10 +5,10 @@ test_that("Identify rare values (less thank k% of the non-NA data) works", {
   expect_equal(get_rare_values(c(1, 1, 3, 4), 50),  3:4)
   expect_equal(get_rare_values(mtcars$carb, 5), c(6, 8))
   expect_equal(get_rare_values(c("cat", "cat", "dog",
-                                                 "cat", "puppy", "puppy"), 20),
+                                 "cat", "puppy", "puppy"), 20),
                "dog")
   expect_equal(get_rare_values(c("cat", "cat", "dog",
-                                                 "cat", "puppy", "puppy"), 35),
+                                 "cat", "puppy", "puppy"), 35),
                c("dog", "puppy"))
   expect_equal(get_rare_values(mtcars$disp, 3), NULL)
   expect_equal(get_rare_values(mtcars$disp, 4),

@@ -15,9 +15,9 @@
 #'
 #' @examples
 make_deidentify_choices_report <- function(data,
-                                             group_rare_values_cols,
-                                             preferred_k_score = NULL,
-                                             file_name) {
+                                           group_rare_values_cols,
+                                           preferred_k_score = NULL,
+                                           file_name) {
 
   date_cols <- sapply(data, class)
   date_cols <- date_cols[date_cols == "Date"]
