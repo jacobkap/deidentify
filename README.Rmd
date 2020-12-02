@@ -25,6 +25,7 @@ knitr::opts_chunk$set(
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![Codecov test coverage](https://codecov.io/gh/jacobkap/deidentify/branch/master/graph/badge.svg)](https://codecov.io/gh/jacobkap/deidentify?branch=master)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/deidentify?color=blue)](https://cran.r-project.org/package=deidentify)
+[![R build status](https://github.com/jacobkap/deidentify/workflows/R-CMD-check/badge.svg)](https://github.com/jacobkap/deidentify/actions)
 <!-- badges: end -->
 
 # De-identify private data
