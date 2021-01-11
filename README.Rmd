@@ -19,11 +19,11 @@ knitr::opts_chunk$set(
 
 
 <!-- badges: start -->
-[![Travis build status](https://travis-ci.org/jacobkap/deidentify.svg?branch=master)](https://travis-ci.org/jacobkap/deidentify)
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/jacobkap/deidentify?branch=master&svg=true)](https://ci.appveyor.com/project/jacobkap/deidentify)
+[![Travis build status](https://travis-ci.org/phillydao/deidentify.svg?branch=master)](https://travis-ci.org/phillydao/deidentify)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/phillydao/deidentify?branch=master&svg=true)](https://ci.appveyor.com/project/phillydao/deidentify)
 [![CRAN status](https://www.r-pkg.org/badges/version/deidentify)](https://CRAN.R-project.org/package=deidentify)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![Codecov test coverage](https://codecov.io/gh/jacobkap/deidentify/branch/master/graph/badge.svg)](https://codecov.io/gh/jacobkap/deidentify?branch=master)
+[![Codecov test coverage](https://codecov.io/gh/phillydao/deidentify/branch/master/graph/badge.svg)](https://codecov.io/gh/phillydao/deidentify?branch=master)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/deidentify?color=blue)](https://cran.r-project.org/package=deidentify)
 <!-- badges: end -->
 

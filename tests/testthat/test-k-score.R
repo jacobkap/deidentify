@@ -8,6 +8,4 @@ test_that("Test k score", {
   expect_equal(make_k_score(example,
                             columns = c("dates", "dates2", "numbers", "groups"), quiet = TRUE), cbind(example, number_of_observations = c(1, 1, 1, 1)))
 
-
-
 })
