@@ -22,7 +22,7 @@ Description: The goal of `deidentify` is to automate some of the work of
     aggregating dates in larger groupings (e.g. months, years).
 License: MIT + file LICENSE
 URL:https://phillydao.github.io/deidentify/, https://github.com/phillydao/deidentify
-BugReports: https://github.com/jacobkap/deidentify/issues
+BugReports: https://github.com/phillydao/deidentify/issues
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
