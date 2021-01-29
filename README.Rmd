@@ -38,8 +38,8 @@ The goal of `deidentify` is to automate some of the work of de-identifying priva
 Currently, `deidentify` is only available on [GitHub](https://github.com/). To install the dev version then, you can use the following
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("jacobkap/deidentify")
+# install.packages("remotes")
+remotes::install_github("phillydao/deidentify")
 ```
 
 ## Why de-identify data?
