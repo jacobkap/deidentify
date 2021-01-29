@@ -21,7 +21,7 @@ Description: The goal of `deidentify` is to automate some of the work of
     to de-identify data by aggregating values that are rare, encrypting strings, and 
     aggregating dates in larger groupings (e.g. months, years).
 License: MIT + file LICENSE
-URL: https://jacobkap.github.io/deidentify/, https://github.com/jacobkap/deidentify
+URL:https://phillydao.github.io/deidentify/, https://github.com/phillydao/deidentify
 BugReports: https://github.com/jacobkap/deidentify/issues
 Encoding: UTF-8
 LazyData: true
