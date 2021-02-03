@@ -22,8 +22,7 @@ coverage](https://codecov.io/gh/phillydao/deidentify/branch/master/graph/badge.s
 
 The goal of `deidentify` is to automate some of the work of
 de-identifying private data for releasing that data to the public. This
-involves determining how many people are in each unique group (the “case
-score”) which determines how easy it is to figure out who someone is.
+involves determining how many people are in each unique group (the “k-score”) which determines how easy it is to figure out who someone is.
 Basically, if someone meets a criteria that is rare in your data
 (e.g. combination of some columns such as a White female, who lives in
 X city, and is aged 16) then it could be easier to figure out who it is.
